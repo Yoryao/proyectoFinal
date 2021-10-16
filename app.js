@@ -1,5 +1,6 @@
-//DEFINIR LA CLASE PARA INGRESAR UN PACIENTE AL CENTRO MEDICO
+//PAGINA WEB PARA GESTIONAR LA ATENCIÓN DE UN CONSULTORIO MEDICO.
 
+//DEFINIR LA CLASE PARA CREAR UN PACIENTE QUE SE ATENDERA EN CENTRO MEDICO
 class Paciente {
     constructor (nombre, apellido, dni, email, doctor, cobertura) {
         this.nombre = nombre,
@@ -13,15 +14,19 @@ class Paciente {
         this.retirado = true
     }
 
-    ingresar() {
+    //FUNCION PARA REGISTRAR EL INGRESO A CONSULTORIO
+    ingresar = (index) => {
         if (this.ingresado != true) {
                 this.ingresado = true;
                 this.retirado = false;
                 console.log("El paciente fue ingresado.")
+                listaPacientes.push(index);
             } else {
                 console.log("El paciente ya se encuentra ingresado.")
             }
     };
+
+    //FUNCION PARA REGISTRAR EL EGRESO DEL CONSULTORIO
 
     egresar() {
         if (this.retirado != true) {
@@ -32,54 +37,123 @@ class Paciente {
             console.log("El paciente no esta en el centro.")
         }
     };
+}; 
+    //FUNCION PARA SER ATENDIDO.
+    // atender() {
+    //     if (consultorio.box1 == false) {
+
+    //     }
+
+    // };
+
+//     reservarTurno(){
+// por parametro se ingresa: doctor, fecha, hora
+//         if ( disponible = false){
+//             alert("El turno se encuentra ocupado. Elija otro turno.")
+//         } else {
+//             alert("El turno fue reservado con exito.")
+//         }
+//     }
+
+// };
+
+//GENERAR UN ARRAY PARA CARGANDO LOS TURNOS DEL DIA.
+let listaTurnos = [];
+
+//GENERAR UN ARRAY PARA CARGAR LOS PACIENTES QUE INGRESAN AL EDIFICIO.
+let listaPacientes = [];
+
+//FUNCION INICIADORA QUE REALIZA LA CARGA INICIAL POR CONSOLA
+// DE LOS PACIENTES QUE SE ATENDERAN ESE DIA EN EL CONSULTORIO.
+// NO IMPLICA QUE HAYAN INGRESADO AL CONSULTORIO.
+
+
+
+class Edificio {
+    constructor () {
+        this.box1 = false;
+        this.box2 = false;
+    };
     
+    registroDiario = () => {
+        for (let i = 0; i < 2; i++) {
+            const paciente = new Paciente (
+                prompt("Ingrese el nombre del paciente:"),
+                prompt("Ingrese el apellido del paciente:"),
+                prompt("Ingrese el dni del paciente:"),
+                prompt("Ingrese el mail del paciente:"),
+                prompt("Ingrese el medico del paciente:"),
+                prompt("ingrese la cobertura del paciente:")
+                );
+                alert("El paciente se ha registrado para ser atendido en el consultorio.");
+                listaTurnos.push(paciente);
+            }
+            //            console.log(paciente);
+            console.log(listaTurnos);
+        };
+        
+        
+        
+    };
+    
+    
+    
+    ///EJECUCION DEL PROGRAMA.
+    //CREA EL CONSULTORIO.
+    const consultorio = new Edificio();
+    
+    console.log(consultorio);
+    
+    //INGRESA LOS TURNOS DEL DIA.
+    consultorio.registroDiario();
+    
+    //PRIMER PACIENTE PASA DE LISTA DE TURNOS A LISTA DE ESPERA.
+   listaTurnos[0].ingresar(listaTurnos[0]);
+    
+    console.log(listaPacientes);
 
 
-
-    reservarTurno(){
-//por parametro se ingresa: doctor, fecha, hora
-        if ( disponible = false){
-            alert("El turno se encuentra ocupado. Elija otro turno.")
-        } else {
-            alert("El turno fue reservado con exito.")
-        }
-    }
-
-
-
-};
-
-const paciente1 = new Paciente ("Hugo", "Reyes", 14256528, "hugo@gmail.com", "Cormillot", "Osde");
-
-console.log(paciente1);
-paciente1.ingresar();
-paciente1.egresar();
-
-
-//MOSTRAR LOS PACIENTES EN FILA POR MEDICO
-//MOSTRAR EL TIEMPO DE ESPERA ESTIMADO PARA SER ATENDIDO
-//RESERVAR TURNO PROXIMA VISITA
-
-
-//DEFINIR LA CLASE PARA HABILITAR UN MEDICO AL CENTRO MEDICO
-class Doctor {
-    constructor ( apellido, dni, email, doctor, cobertura) {
-        this.apellido = apellido,
-        this.dni = dni,
-        this.cobertura = cobertura,
-        this.ingresado = false,
+    
+    //MOSTRAR LOS PACIENTES EN FILA POR MEDICO
+    //MOSTRAR EL TIEMPO DE ESPERA ESTIMADO PARA SER ATENDIDO
+    //RESERVAR TURNO PROXIMA VISITA
+    
+    
+    //DEFINIR LA CLASE PARA HABILITAR UN MEDICO AL CENTRO MEDICO
+    class Doctor {
+        constructor ( apellido, dni, email, doctor, cobertura) {
+            this.apellido = apellido,
+            this.dni = dni,
+            this.cobertura = cobertura,
+            this.ingresado = false,
         this.atendiendo = false,
         this.retirado = true
     }
 
-    atender(paciente1) {
+    atender() {
 
     }
 
+    ingresar() {
+        if (this.ingresado != true) {
+                this.ingresado = true;
+                this.retirado = false;
+                console.log("El doctor ha llegado.")
+            } else {
+                console.log("El doctor ya se encuentroba en el centro.")
+            }
+    };
 
-
-
-
+    egresar() {
+        if (this.retirado != true) {
+            this.retirado = true;
+            this.ingresado = false;
+            console.log("El doctor se ha retirado.")
+        } else {
+            console.log("El doctor no esta en el centro.")
+        }
+    };
+};
 
 
 
