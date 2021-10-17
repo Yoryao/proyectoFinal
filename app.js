@@ -1,6 +1,7 @@
 //PAGINA WEB PARA GESTIONAR LA ATENCIÓN DE UN CONSULTORIO MEDICO.
 
 //DEFINIR LA CLASE PARA CREAR UN PACIENTE QUE SE ATENDERA EN CENTRO MEDICO
+//INGRESADO: LLEGO AL CENTRO. ATENDIDO: ESTA SIENDO ATENDIDO POR EL DOCTOR. RETIRADO: SE RETIRO DEL CENTRO. 
 class Paciente {
     constructor (nombre, apellido, dni, email, doctor, cobertura) {
         this.nombre = nombre,
@@ -11,7 +12,7 @@ class Paciente {
         this.cobertura = cobertura,
         this.ingresado = false,
         this.atendido = false,
-        this.retirado = true
+        this.retirado = false
     }
 
     //FUNCION PARA REGISTRAR EL INGRESO A CONSULTORIO
@@ -19,7 +20,9 @@ class Paciente {
         if (this.ingresado != true) {
                 this.ingresado = true;
                 this.retirado = false;
-                console.log("El paciente fue ingresado.")
+                console.log(`El paciente ${index.nombre} ha ingresado al Centro Médico.`);
+                
+                //lo ingreso en la lista de espera del doctor.
                 listaPacientes.push(index);
             } else {
                 console.log("El paciente ya se encuentra ingresado.")
@@ -32,7 +35,9 @@ class Paciente {
         if (this.retirado != true) {
             this.retirado = true;
             this.ingresado = false;
-            console.log("El paciente se ha retirado.")
+            console.log(`El paciente ${index.nombre} se ha retirado del Centro Médico.`);
+         
+            //lo retiro de la lista de turnos. Esto deberia suceder al ingresar al consultorio. 
             listaTurnos.shift(index);
         } else {
             console.log("El paciente no esta en el centro.")
@@ -58,28 +63,28 @@ class Paciente {
 
 // };
 
-//GENERAR UN ARRAY PARA CARGANDO LOS TURNOS DEL DIA.
-let listaTurnos = [];
+//INICIO LISTA DE ARRAYS.
 
-//GENERAR UN ARRAY PARA CARGAR LOS PACIENTES QUE INGRESAN AL EDIFICIO.
-let listaPacientes = [];
+let listaTurnos = []; // TURNOS DEL DIA.
 
-let listaBox1 = [];
+let listaPacientes = []; // INGRESOS AL CENTRO MEDICO
+
+let listaBox1 = []; // INGRESO AL CONSULTORIO.
 
 //FUNCION INICIADORA QUE REALIZA LA CARGA INICIAL POR CONSOLA
 // DE LOS PACIENTES QUE SE ATENDERAN ESE DIA EN EL CONSULTORIO.
 // NO IMPLICA QUE HAYAN INGRESADO AL CONSULTORIO.
 
-
-
+//CLASE CREACION DE EDIFICIO. GENERA CONSULTORIOS Y LISTA DE TURNOS DE LOS PACIENTES QUE ASISTIRAN ESE DÍA.
 class Edificio {
     constructor () {
         this.box1 = false;
         this.box2 = false;
     };
     
+    //REGISTROS TURNOS DEL DIA. 
     registroDiario = () => {
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < 3; i++) {
             const paciente = new Paciente (
                 prompt("Ingrese el nombre del paciente:"),
                // prompt("Ingrese el apellido del paciente:"),
@@ -88,13 +93,18 @@ class Edificio {
                 //prompt("Ingrese el medico del paciente:"),
                 //prompt("ingrese la cobertura del paciente:")
                 );
-                alert("El paciente se ha registrado para ser atendido en el consultorio.");
+             
+                alert(`El paciente ${paciente.nombre} se ha registrado para ser atendido en el consultorio.`);
+                
+                //ingreso las cargas de 3 pacientes en la lista de turnos del día.
                 listaTurnos.push(paciente);
             }
-            //            console.log(paciente);
+
+            console.log(`PACIENTES QUE ASISTIRAN HOY AL CONSULTORIO.`)
             console.log(listaTurnos);
         };
 
+    //INGRESO DEL PACIENTE AL BOX.    
     atenderPaciente = (paciente, box) => {
         if (!consultorio.box) {
             paciente.atendido = true;
@@ -110,16 +120,19 @@ class Edificio {
     
     
     
+    //------------------INICIO DE EJECUCIONES---------------------
     ///EJECUCION DEL PROGRAMA.
     //CREA EL CONSULTORIO.
     const consultorio = new Edificio();
-    
     console.log("Objecto Consultorio")
     console.log(consultorio);
-    
+    console.log(`---------------------------`)
+
     //INGRESA LOS TURNOS DEL DIA.
     consultorio.registroDiario();
-    
+
+  /*  
+
     //PRIMER PACIENTE PASA DE LISTA DE TURNOS A LISTA DE ESPERA.
    listaTurnos[0].ingresar(listaTurnos[0]);
    console.log("Lista de Turnos:")
@@ -146,7 +159,8 @@ class Edificio {
 
 
     console.log(consultorio);
-
+*/
+    //------------------FIN DE INICIACIONES---------------------
 
 
 
