@@ -3,10 +3,10 @@
 //DEFINIR LA CLASE PARA CREAR UN PACIENTE QUE SE ATENDERA EN CENTRO MEDICO
 //INGRESADO: LLEGO AL CENTRO. ATENDIDO: ESTA SIENDO ATENDIDO POR EL DOCTOR. RETIRADO: SE RETIRO DEL CENTRO. 
 class Paciente {
-    constructor (nombre, apellido, dni, email, doctor, cobertura) {
+    constructor (nombre, dni, apellido, email, doctor, cobertura) {
         this.nombre = nombre,
-        this.apellido = apellido,
         this.dni = dni,
+        this.apellido = apellido,
         this.email = email,
         this.doctor = doctor,
         this.cobertura = cobertura,
@@ -15,7 +15,7 @@ class Paciente {
         this.retirado = false
     }
 
-    //FUNCION PARA REGISTRAR EL INGRESO A CONSULTORIO
+//FUNCION PARA REGISTRAR EL INGRESO Al CENTRO MEDICO
     ingresar = (index) => {
         if (this.ingresado != true) {
                 this.ingresado = true;
@@ -71,10 +71,8 @@ let listaPacientes = []; // INGRESOS AL CENTRO MEDICO
 
 let listaBox1 = []; // INGRESO AL CONSULTORIO.
 
-//FUNCION INICIADORA QUE REALIZA LA CARGA INICIAL POR CONSOLA
-// DE LOS PACIENTES QUE SE ATENDERAN ESE DIA EN EL CONSULTORIO.
-// NO IMPLICA QUE HAYAN INGRESADO AL CONSULTORIO.
 
+//-----------------------------------------------
 //CLASE CREACION DE EDIFICIO. GENERA CONSULTORIOS Y LISTA DE TURNOS DE LOS PACIENTES QUE ASISTIRAN ESE DÍA.
 class Edificio {
     constructor () {
@@ -87,8 +85,8 @@ class Edificio {
         for (let i = 0; i < 3; i++) {
             const paciente = new Paciente (
                 prompt("Ingrese el nombre del paciente:"),
-               // prompt("Ingrese el apellido del paciente:"),
                 prompt("Ingrese el dni del paciente:"),
+                //prompt("Ingrese el apellido del paciente:"),
                 //prompt("Ingrese el mail del paciente:"),
                 //prompt("Ingrese el medico del paciente:"),
                 //prompt("ingrese la cobertura del paciente:")
@@ -108,16 +106,21 @@ class Edificio {
     atenderPaciente = (paciente, box) => {
         if (!consultorio.box) {
             paciente.atendido = true;
-            console.log(`El paciente esta siendo atendido en ${box}`);
+
+            //DEBERIA CREAR UN ARRAY PARA VINCULAR EL ESTADO DEL CONSULTORIO (TRUE,faLSE) CON EL NUMERO DE CONSULTORIO 1 O 2
+
+            console.log(`El paciente ${paciente.nombre} esta siendo atendido en ${box}`);
+            
+            //MODIFICO EL CONSULTORIO A OCUPADO.
             box = true;
-            this.box1 = true;
             listaBox1.push(paciente);
+        
         } else {
             console.log(`No hay consultorio disponible para atención`);
         }
     }     
   };
-    
+//-----------------------------------------------    
     
     
     //------------------INICIO DE EJECUCIONES---------------------
@@ -131,12 +134,32 @@ class Edificio {
     //INGRESA LOS TURNOS DEL DIA.
     consultorio.registroDiario();
 
-  /*  
+//INGRESO DE PACIENTES AL CENTRO MEDICO Y LISTA DE ESPERA.
 
-    //PRIMER PACIENTE PASA DE LISTA DE TURNOS A LISTA DE ESPERA.
+//PRIMER PACIENTE PASA DE LISTA DE TURNOS A LISTA DE ESPERA.
    listaTurnos[0].ingresar(listaTurnos[0]);
-   console.log("Lista de Turnos:")
+   listaTurnos[2].ingresar(listaTurnos[2]);
+   listaTurnos[1].ingresar(listaTurnos[1]);
+ 
+//IMPRIMO ORDEN DE ATENCIÓN.
 
+   console.log("Lista de espera:");
+   console.log(`------------------`);
+   console.log(listaPacientes);
+
+
+//ATENCION DEL PACIENTE AL CONSULTORIO.
+
+consultorio.atenderPaciente(listaPacientes[0], consultorio.box1);
+
+console.log(`------------------`);
+console.log("box1 true o false? ")
+console.log(consultorio.box1);
+console.log("array box 1");
+console.log(listaBox1);
+console.log(listaPacientes[0]);
+
+   /*
    console.log(listaTurnos);
     
     console.log("Lista de pacientes:")
@@ -150,12 +173,6 @@ class Edificio {
     console.log(listaTurnos);
 
     
-    consultorio.atenderPaciente(listaPacientes[0], consultorio.box1);
-    
-    console.log("box1 true o false? ")
-    console.log(consultorio.box1);
-    console.log("array box 1");
-    console.log(listaBox1);
 
 
     console.log(consultorio);
