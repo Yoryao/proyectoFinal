@@ -31,10 +31,29 @@ body {
     justify-content: space-around;
 }
 
-#formPacientes, #formMedicos, .listaPacientesPorMedico {
+.listaEspera {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border: 1px green solid;
+}
+
+#formPacientes, #formMedicos {
     width: 45%;
     display:inline-block;
     flex-direction: column;
     border: 2px blue solid;
     margin-bottom: 10px;
+}
+
+.listaPacientesPorMedico {
+    display:flex;
+    flex-direction: column;
+    border: 2px blue solid;
+    margin-bottom: 10px;
+}
+
+#contenedores {
+    display: flex;
+    flex-direction: row;
 }
