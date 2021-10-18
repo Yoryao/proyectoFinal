@@ -1,0 +1,40 @@
+body {
+    width: 95%;
+    align-items: center;
+    margin: 0px auto;
+        background-color: blanchedalmond;
+    border: 2px red solid;
+    
+}
+
+#titulo, #tituloSeccion {
+    text-align: center;
+    border: 2px red solid;
+    font-size: 2em;
+    font-family:'Times New Roman', Times, serif
+}
+
+.tituloSeccion {
+    text-align: center;
+    border: 2px red solid;
+    font-size: 1.5em;
+    font-family:'Times New Roman', Times, serif
+}
+
+#formulariosIngreso {
+    width: 90%;
+    display: flex;
+
+    margin: auto;
+    border: 2px blue solid;
+
+    justify-content: space-around;
+}
+
+#formPacientes, #formMedicos, .listaPacientesPorMedico {
+    width: 45%;
+    display:inline-block;
+    flex-direction: column;
+    border: 2px blue solid;
+    margin-bottom: 10px;
+}
