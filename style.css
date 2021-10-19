@@ -9,14 +9,14 @@ body {
 
 #titulo, #tituloSeccion {
     text-align: center;
-    border: 2px red solid;
+    border: 2px brown solid;
     font-size: 2em;
     font-family:'Times New Roman', Times, serif
 }
 
 .tituloSeccion {
     text-align: center;
-    border: 2px red solid;
+    border: 2px yellowgreen solid;
     font-size: 1.5em;
     font-family:'Times New Roman', Times, serif
 }
@@ -34,6 +34,7 @@ body {
 .listaEspera {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     width: 30%;
     border: 1px green solid;
 }
@@ -56,4 +57,10 @@ body {
 #contenedores {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+}
+
+.consultorioMedico {
+    text-align: center;
+    font-size: 1.5em;
 }

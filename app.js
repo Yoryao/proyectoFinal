@@ -10,7 +10,7 @@ let listaBox1 = []; // INGRESO AL CONSULTORIO.
 
 
 //------------------INICIO PACIENTE--------------------
-//FUNCCIONALIDADES PACIENTE: INGRESAR CENTRO MEDICO, EGRESAR CENTRO MEDICO, SOLICITARR TURNO.
+//FUNCCIONALIDADES PACIENTE: SOLICITAR TURNO.
 //INGRESADO: LLEGO AL CENTRO. ATENDIDO: ESTA SIENDO ATENDIDO POR EL DOCTOR. RETIRADO: SE RETIRO DEL CENTRO. 
 
 //DEFINIR LA CLASE PARA CREAR UN PACIENTE QUE SE ATENDERA EN CENTRO MEDICO
@@ -87,6 +87,7 @@ class Edificio {
         constructor () {
             this.box1 = false;
             this.box2 = false;
+            this.box3 = false;
         };
                 
         //REGISTROS TURNOS DEL DIA. 
@@ -113,7 +114,7 @@ class Edificio {
             };
             
             //INGRESO DEL PACIENTE AL BOX.    
-        atenderPaciente = (paciente, box) => {
+        iniciarConsulta = (paciente, box) => {
             let room;
             
             if (box == consultorio.box1){
@@ -124,9 +125,9 @@ class Edificio {
             
             if (!consultorio.box) {
                 paciente.atendido = true;
-                box = true;
+                this.box1 = true;
                 listaBox1.push(paciente);
-                listaTurnos.shift(paciente); 
+                //listaTurnos.shift(paciente); 
 
                 console.log(`El paciente ${paciente.nombre} esta siendo atendido en ${room}`);
                 
@@ -136,8 +137,26 @@ class Edificio {
             } else {
                 console.log(`No hay consultorio disponible para atención`);
             }
-        }     
-    };
+        }  
+        
+        //EGRESO DEL PACIENTE DEL BOX.    
+        finalizarConsulta = (paciente) => {
+                 
+                paciente.atendido = false;
+                this.box1 = false;
+                
+                //saco al paciente del array del box.
+                listaBox1.shift(paciente); 
+                
+                console.log(`------------`);
+                console.log(`El paciente ${paciente.nombre} finalizó su consulta.`);
+                
+                //MODIFICO EL CONSULTORIO A OCUPADO.
+                
+                
+            } 
+        };     
+    
     /*------------------INICIO DE DOCTOR---------------------
     
     //DEFINIR LA CLASE PARA HABILITAR UN MEDICO AL CENTRO MEDICO
@@ -202,15 +221,28 @@ class Edificio {
     
     // INGRESO DEL PACIENTE AL CONSULTORIO.
     
-     consultorio.atenderPaciente(listaPacientes[0], consultorio.box1);
+     consultorio.iniciarConsulta(listaPacientes[0], consultorio.box1);
     
     console.log(`------------------`);
-    console.log("box1 true o false? ")
-    console.log(consultorio.box1);
     console.log("Pacientes en Consultorio");
     console.log(listaBox1);
     console.log(`Lista de espera.`)
     console.log(listaTurnos);
     
+    console.log("Objecto Consultorio")
+    console.log(`---------------------------`)
+    console.log(consultorio);
+
+    consultorio.finalizarConsulta(listaPacientes[0], consultorio.box1);
+    
+
+
+    console.log("Objecto Consultorio")
+    console.log(`---------------------------`)
+    console.log(consultorio);
+
+    
+
+
     // ------------------FIN DE INICIACIONES---------------------
             
