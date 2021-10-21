@@ -1,8 +1,9 @@
 body {
+    background-image: url("./img/2179452950ec063f1cfe752ca5860318.jpg");
     width: 95%;
     align-items: center;
     margin: 0px auto;
-        background-color: blanchedalmond;
+    background-color: blanchedalmond;
     border: 2px red solid;
     
 }
@@ -41,6 +42,7 @@ body {
 
 #formPacientes, #formMedicos {
     width: 45%;
+    max-width: 45%;
     display:inline-block;
     flex-direction: column;
     border: 2px blue solid;
@@ -63,4 +65,9 @@ body {
 .consultorioMedico {
     text-align: center;
     font-size: 1.5em;
+}
+
+label {
+    max-width: 60%;
+    display: inline-block;
 }

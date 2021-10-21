@@ -5,6 +5,7 @@
 let listaTurnos = []; // TURNOS DEL DIA.
 let listaPacientes = []; // INGRESOS AL CENTRO MEDICO
 let listaBox1 = []; // INGRESO AL CONSULTORIO.
+let listaCoberturas = []; //COBERTURAS PERMITIDAS.
 
 //FIN LISTA DE ARRAYS.
 
