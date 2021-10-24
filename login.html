@@ -11,9 +11,36 @@
 </head>
 
 <body>
-    <h1>PAGINA DE REGISTRO Y LOGIN</h1>
+    <header>
+        <h1>PAGINA DE REGISTRO Y LOGIN</h1>
+    </header>
 
-    <button><a href="index.html">INGRESAR AL SISTEMA</a></button>
+    <div id="formularios">
+
+        <div id="regForm">
+            <h3>Ingrese sus Datos</h3>
+            <form  class="form" action="">
+                <label for="nombre">Nombre REG</label>
+                <input type="text" name="nombre" id="nombreReg">
+                <label for="password">PassWord REG</label>
+                <input type="password" name="password" id="passwordReg">
+                <input class="button" type="submit" value="Registrarse" id="regButton">
+            </form>
+        </div>
+
+        <div id="logForm">
+            <h3>Ingrese sus Datos para registro</h3>
+            <form class="form" action="">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombrelog">
+                <label for="password">PassWord</label>
+                <input type="password" name="password" id="passwordLog">
+                <input class="button" type="submit" value="Login" id="logButton">
+            </form>
+        </div>
+
+    </div>
+
     <script src="login.js"></script>
 </body>
 

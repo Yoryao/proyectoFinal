@@ -1,5 +1,69 @@
 body {
     background-image: url("./img/2179452950ec063f1cfe752ca5860318.jpg");
+    background-size: cover;
+}
 
-    
+header {
+    width: 90%;
+    margin: 10px auto auto auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    background-color: cadetblue;
+    border-radius: 10px;
+}
+
+
+
+
+#formularios {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px blue dotted;
+    background-color: coral;
+}
+
+#regForm, #logForm {
+
+    width: 40%;
+    display: flex;
+    display: inline;
+    text-align: center;
+    font-size: 1.5em;
+    margin-left: 5%;
+    margin-right: 5%;
+    flex-direction: column;
+    margin-top: 20px;
+    border: 2px solid red;
+}
+
+label {
+    margin: 10px;
+
+    font-size: 1.5rem;
+    padding-top: 3px;
+}
+
+input {
+    margin: 10px;
+
+    font-size: 1.2rem;
+    padding-top: 3px;
+}
+
+.button {
+    margin: 10px;
+    border-radius: 5px;
+    background-color: darkcyan;
+}
+
+.form {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }

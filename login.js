@@ -1,35 +1,43 @@
 //REGISTRAR DATOS EN EL STORAGE / SESSION
 
-// let registro = () => {
 
-//     let nombreReg = prompt("Ingrese su nombre: ");
-//     let passwordReg = prompt("Ingrese su clave: ");
-
-//     if (nombreReg != "" || passwordReg != "") {
-//         localStorage.setItem( nombreReg, passwordReg );
-//         alert("Ya puede realizar el Login");
-//     } else {
-//         alert("Debe ingresar sus datos correctamente.");
-//         registro();
-//     }
-// };
-
-let login = () => {
+function registro() {
     
-    let nombreLog = prompt("Ingrese su nombre: ");
-    let passwordLog = prompt("Ingrese su clave: ");
-    let passwordStorage = localStorage.getItem(nombreLog);
-    
-    if (passwordLog === passwordStorage) {
+    let nombreReg = document.getElementById("nombreReg").value; 
+    let passwordReg = document.getElementById("passwordReg").value;
 
-        alert("Bienvenido a casa Forest.")
+    if (nombreReg == "" || passwordReg == "") {
+        alert("Debe ingresar sus datos correctamente.");
+    } else {
+        localStorage.setItem( nombreReg, passwordReg );
+        alert("Ya puede realizar el Login");
+    }
+};
+
+function login() {
+    
+    let nombreLog = document.getElementById("nombrelog").value; 
+    let passwordLog = document.getElementById("passwordlog").value;
+    let passwordReg = localStorage.getItem(nombreLog);
+    
+    if (passwordLog === passwordReg) {
         
+        alert("Bienvenido a casa Forest.")
+        console.log("Bienvenido a casa Forest.")
+        
+
     } else {
         alert("Tu eres tonto o algo asi?");
-        login();
-    }
+        
+
+            }
 
 };
 
-//registro();
-login();
+let regButton = document.getElementById("regButton");
+regButton.addEventListener("click", registro);
+
+
+let logButton = document.getElementById("logButton");
+logButton.addEventListener("click", login);
+
