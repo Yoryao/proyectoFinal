@@ -92,27 +92,27 @@ class Edificio {
         };
                 
         //REGISTROS TURNOS DEL DIA. 
-        registroDiario = () => {
-            for (let i = 0; i < 3; i++) {
-                const paciente = new Paciente (
-                    prompt("Ingrese el nombre del paciente:"),
-                    prompt("Ingrese el dni del paciente:"),
-                    //prompt("Ingrese el apellido del paciente:"),
-                    //prompt("Ingrese el mail del paciente:"),
-                    //prompt("Ingrese el medico del paciente:"),
-                    //prompt("ingrese la cobertura del paciente:")
-                    );
+        // registroDiario = () => {
+        //     for (let i = 0; i < 0; i++) {
+        //         const paciente = new Paciente (
+        //             prompt("Ingrese el nombre del paciente:"),
+        //             prompt("Ingrese el dni del paciente:"),
+        //             //prompt("Ingrese el apellido del paciente:"),
+        //             //prompt("Ingrese el mail del paciente:"),
+        //             //prompt("Ingrese el medico del paciente:"),
+        //             //prompt("ingrese la cobertura del paciente:")
+        //             );
                     
-                    alert(`El paciente ${paciente.nombre} se ha registrado para ser atendido en el consultorio.`);
+        //             alert(`El paciente ${paciente.nombre} se ha registrado para ser atendido en el consultorio.`);
                     
-                    //ingreso las cargas de los pacientes en la lista de turnos del día.
-                    listaTurnos.push(paciente);
-                };
+        //             //ingreso las cargas de los pacientes en la lista de turnos del día.
+        //             listaTurnos.push(paciente);
+        //         };
                 
-                console.log(`PACIENTES QUE ASISTIRAN HOY AL CONSULTORIO.`)
-                console.log(listaTurnos);
-                alert(`El primer paciente es ${listaTurnos[0].nombre} `);
-            };
+        //         console.log(`PACIENTES QUE ASISTIRAN HOY AL CONSULTORIO.`)
+        //         console.log(listaTurnos);
+        //         alert(`El primer paciente es ${listaTurnos[0].nombre} `);
+        //     };
             
             //INGRESO DEL PACIENTE AL BOX.    
         iniciarConsulta = (paciente, box) => {
@@ -198,52 +198,123 @@ class Edificio {
     // //------------------INICIO DE EJECUCIONES---------------------
     //             EJECUCION DEL PROGRAMA.
     //             CREA EL CONSULTORIO.
-                const consultorio = new Edificio();
-                console.log("Objecto Consultorio")
-                console.log(`---------------------------`)
-                console.log(consultorio);
+                // const consultorio = new Edificio();
+                // console.log("Objecto Consultorio")
+                // console.log(`---------------------------`)
+                // console.log(consultorio);
                 
     //             INGRESA LOS TURNOS DEL DIA.
-                consultorio.registroDiario();
+                // consultorio.registroDiario();
                 
     //INGRESO DE PACIENTES AL CENTRO MEDICO Y LISTA DE ESPERA.
     
     // PRIMER PACIENTE PASA DE LISTA DE TURNOS A LISTA DE ESPERA.
-    listaTurnos[0].ingresar(listaTurnos[0]);
-    listaTurnos[2].ingresar(listaTurnos[2]);
-    listaTurnos[1].ingresar(listaTurnos[1]);
+    // listaTurnos[0].ingresar(listaTurnos[0]);
+    // listaTurnos[2].ingresar(listaTurnos[2]);
+    // listaTurnos[1].ingresar(listaTurnos[1]);
     
-    // IMPRIMO LISTA CON ORDEN DE ATENCIÓN.
+    // // IMPRIMO LISTA CON ORDEN DE ATENCIÓN.
     
-    console.log("Lista de espera:");
-    console.log(`------------------`);
-    console.log(listaPacientes);
+    // console.log("Lista de espera:");
+    // console.log(`------------------`);
+    // console.log(listaPacientes);
     
     
-    // INGRESO DEL PACIENTE AL CONSULTORIO.
+    // // INGRESO DEL PACIENTE AL CONSULTORIO.
     
-     consultorio.iniciarConsulta(listaPacientes[0], consultorio.box1);
+    //  consultorio.iniciarConsulta(listaPacientes[0], consultorio.box1);
     
-    console.log(`------------------`);
-    console.log("Pacientes en Consultorio");
-    console.log(listaBox1);
-    console.log(`Lista de espera.`)
-    console.log(listaTurnos);
+    // console.log(`------------------`);
+    // console.log("Pacientes en Consultorio");
+    // console.log(listaBox1);
+    // console.log(`Lista de espera.`)
+    // console.log(listaTurnos);
     
-    console.log("Objecto Consultorio")
-    console.log(`---------------------------`)
-    console.log(consultorio);
+    // console.log("Objecto Consultorio")
+    // console.log(`---------------------------`)
+    // console.log(consultorio);
 
-    consultorio.finalizarConsulta(listaPacientes[0], consultorio.box1);
+    // consultorio.finalizarConsulta(listaPacientes[0], consultorio.box1);
     
 
 
-    console.log("Objecto Consultorio")
-    console.log(`---------------------------`)
-    console.log(consultorio);
+    // console.log("Objecto Consultorio")
+    // console.log(`---------------------------`)
+    // console.log(consultorio);
 
     
 
 
     // ------------------FIN DE INICIACIONES---------------------
-            
+
+    //-------------EJECUCIONES DE VISUALIZACIÓN DE LA APLICACIÓN--------
+
+//DECLARO UNA FUNCION QUE CARGA DATOS AL DOM PARA INFORMAR EL STATUS DE LA APP.(FECHA, HORA, USER)
+function statusApp(){
+
+    //INSERTAR HORA
+const hora = document.getElementById("date");
+hora.innerText = new Date().toDateString();
+
+//INSERTAR HORA
+const fecha = document.getElementById("hour");
+fecha.innerText = new Date().toLocaleTimeString();
+
+    //INSERTAR USUARIO
+const user = document.getElementById("user");
+user.innerText = localStorage.getItem("userLogged"); //ESTO LO TENGO QUE TRAER DESDE EL LOGIN.
+};
+
+//DECLARO LA FUNCIÓN QUE CREA EL PACIENTE NUEVO INVOCANDO AL CONSTRUCTOR.
+function ingresarPaciente(){
+
+    //CAPTURO VALORES DESDE EL FORMULARIO.
+        let nombre = document.getElementById("nombrePac").value;       
+        let dni = document.getElementById("dniPac").value;
+        let apellido = document.getElementById("apellidoPac").value;
+        let email = document.getElementById("emailPac").value;
+        let doctor = document.getElementById("doctorPac").value;
+        let cobertura = document.getElementById("coberturaPac").value        
+        
+    //INVOCO AL CONSTRUCTOR.
+        const paciente = new Paciente (nombre, dni, apellido, email, doctor, cobertura);
+        
+    //MODIFICO EL DOM INFORMANDO LO REALIZADO.
+        const advice = document.getElementById("display");
+        const message = `El paciente ${paciente.nombre} se ha registrado para ser atendido en el consultorio.`;
+        advice.innerText = message;
+        
+    //CARGO AL PACIENTE A LA LISTA DE ESPERA.
+        listaTurnos.push(paciente);
+        console.log(listaTurnos);
+        
+    };
+    
+//EVENTO DEL USUARIO PARA CREAR EL PACIENTE.
+    let regButton = document.getElementById("ingresar");
+    regButton.addEventListener("click", ingresarPaciente);
+    
+    
+    statusApp();
+
+    //crear lista de espera
+    const tabla = document.getElementById("medico1");
+
+    listaPacientes.forEach ( (espera) => { 
+
+        const fila = document.createElement("div")
+    
+    fila.innerHTML = `
+        
+            <tr>
+            <td>${espera.nombre}</td>
+            <td>${espera.apellido}</td>
+            <td><button>Ingreso</button><td>
+            </tr>
+        
+     `
+        tabla.append(fila);
+        console.log(fila);
+        console.log(tabla);
+
+    });

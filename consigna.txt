@@ -1,9 +1,16 @@
 ENTREGA DEL .....
 Deberás agregar y entregar uso de:
  JSON 
- Storage
- DOM
+ Storage 
+    * se uso el storage para simular el ingreso de a la aplicación bajo chequeo de password
+ DOM 
+    * se manipulo el dom para habilitar el boton de ingreso a la aplicación 
+    web.
+    * se manipula el dom para informar, fecha, hora y usuario logueado.
  eventos del usuario.
+    * con eventos de usario se usaron clicks sobre botones para confirmar registro y login, y para ingresar a la aplicación web. 
+    * con un click se produce la creación del paciente.
+    
 
 
 
