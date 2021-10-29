@@ -212,11 +212,18 @@ const listaEspera = document.getElementById("medico1");
 
 listaPacientes.forEach((paciente) => {
   const tr = document.createElement("tr");
-  tr.innerHTML = `${paciente.nombre}`;
   const btn = document.createElement("button");
+  const btn2 = document.createElement("button");
+  
+  tr.innerHTML = `${paciente.nombre}`;
+  tr.className = "trList";
+  btn.className= "btnList";
+  btn2.className = "btnList";
   btn.id = `${paciente}`;
   btn.innerText = "Remover";
+  btn2.innerText = "Ingresar";
 
+  tr.append(btn);
+  tr.append(btn2);
   listaEspera.append(tr);
-  listaEspera.append(btn);
 });

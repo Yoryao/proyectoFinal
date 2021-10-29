@@ -19,7 +19,9 @@ function registro() {
 };
 
 //LOGIN funcion llamada desde el boton
-function login() {
+function login(e) {
+  e.preventDefault();
+
 
  //capturo los datos ingresados por el usuario.
   let nombreLog = document.getElementById("nombrelog").value;
@@ -33,16 +35,10 @@ function login() {
     alert("Bienvenido.");
     console.log("Bienvenido.");
 
-     // CAPTURA DEL BOTON + CREACION ANCHOR
-    //  const boton = document.getElementById("ingreso1");
-    //  const link = document.createElement("a");
-    //  link.innerHTML="ingrese al sistema";
-    //  link.href = "index.html";
-    //  boton.append(link); 
-    
-    // const boton = document.getElementById("botonIngreso");
-    // boton.innerHTML = `<button type="button" id="ingreso1" value="Ingresar al sistema><a href="index.html" target="_blanck">INGRESO AL SISTEMA</a></button>`
-    // document.body.append(boton);
+      
+    const boton = document.getElementById("botonIngreso");
+    boton.innerHTML = `<button type="button" id="ingreso1" value="Ingresar al sistema"><a href="index.html" target="_blank">INGRESO AL SISTEMA</a></button>`
+    document.body.append(boton);
 
   } else {
     //passwords distintos: se prohibe el ingreso.
@@ -59,12 +55,6 @@ function login() {
 };
 
 //eventos del usuario.
-
-const boton = document.getElementById("ingreso1");
-const link = document.createElement("a");
-link.innerText="ingrese al sistema";
-link.href = "index.html";
-boton.appendChild(link); 
 
 
 
