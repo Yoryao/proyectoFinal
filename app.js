@@ -210,20 +210,66 @@ regButton.addEventListener("click", ingresarPaciente);
 
 const listaEspera = document.getElementById("medico1");
 
-listaPacientes.forEach((paciente) => {
-  const tr = document.createElement("tr");
-  const btn = document.createElement("button");
-  const btn2 = document.createElement("button");
-  
-  tr.innerHTML = `${paciente.nombre}`;
-  tr.className = "trList";
-  btn.className= "btnList";
-  btn2.className = "btnList";
-  btn.id = `${paciente}`;
-  btn.innerText = "Remover";
-  btn2.innerText = "Ingresar";
 
-  tr.append(btn);
-  tr.append(btn2);
-  listaEspera.append(tr);
+//INGRESO DE PACIENTES EN LISTA DE ESPERA, CON BOTON 
+//INGRESAR A CONSULTORIO Y CANCELAR
+
+const actualizarEspera = () => {
+
+const div = document.getElementById("medico1");
+div.innerHTML = "";
+
+listaPacientes.forEach((paciente) => {
+
+  const lista = document.createElement("div");
+
+  lista.className = "pacienteEsperando";
+  lista.innerHTML = 
+    `
+    <p>${paciente.nombre}</p>
+    <p> ${paciente.apellido}</p>
+    <button onclick="ingresarConsultorio(${paciente.dni})" 
+    class="btn-ing-con">INGRESAR</button>
+    <button onclick="cancelarConsultorio(${paciente.dni})"
+    class="btn-can-con">CANCELAR</button>    
+    `
+div.appendChild(lista);
+
 });
+
+}
+
+let btnRefresh = document.getElementById("refresh");
+btnRefresh.addEventListener("click", actualizarEspera);
+//actualizarEspera();
+
+const vaciarBox = () => {
+
+listaBox1 = [];
+let atendiendo = document.getElementById("consultorioOcupado");
+atendiendo.innerText = "CONSULTORIO VACIO";
+
+
+}
+let vaciarConsultorio = document.getElementById("liberar");
+vaciarConsultorio.addEventListener("click", vaciarBox);
+
+
+//PROMOCION DE LISTA DE ESPERA A CONSULTORIO
+const ingresarConsultorio = (dni) => {
+
+    const paciente = listaPacientes.find( (paciente) => paciente.dni === dni)
+    listaBox1.push(paciente.nombre);
+    let pacienteNyA = `${paciente.nombre} ${paciente.apellido}`
+
+    const remover = listaPacientes.find( (paciente) => paciente.dni === dni)
+    listaPacientes.splice(listaPacientes.indexOf(remover), 1);
+
+    let atendiendo = document.getElementById("consultorioOcupado");
+    atendiendo.innerText = pacienteNyA;
+
+    actualizarEspera();
+
+}
+
+
