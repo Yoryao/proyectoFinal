@@ -1,54 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login.css">
-    
-    <title>Document</title>
-    
+    <title>PAGINA DE REGISTRO Y LOGIN</title>
 </head>
 
 <body>
     <header>
         <h1>PAGINA DE REGISTRO Y LOGIN</h1>
     </header>
-    
+
     <div id="formularios">
-        
+
+        <!--------- FORMULARIO DE REGISTRO------- -->
         <div id="regForm">
             <h3>REGISTRESE</h3>
-            <form  class="form" action="">
+            <form class="form" action="">
                 <label for="nombre">Registre su Nombre</label>
-                <input type="text" name="nombre" id="nombreReg">
+                <input type="text" name="nombre" id="nombreRegistro">
                 <label for="password">Ingrese su PassWord</label>
-                <input type="password" name="password" id="passwordReg">
-                <input class="button" type="submit" value="Registrarse" id="regButton">
+                <input type="password" name="password" id="passwordRegistro">
+                <input class="button" type="submit" value="Registrarse" id="btnRegistro">
             </form>
         </div>
+
+        <!--------- FORMULARIO DE LOGIN------- -->
 
         <div id="logForm">
             <h3>INGRESE AL SISTEMA</h3>
             <form class="form" action="">
                 <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" id="nombrelog">
+                <input type="text" name="nombre" id="nombrelogin">
                 <label for="password">PassWord</label>
-                <input type="password" name="password" id="passwordLog">
+                <input type="password" name="password" id="passwordLogin">
                 <input class="button" type="submit" value="Login" id="logButton">
             </form>
         </div>
-        
-        
+
+        <!--------- BOTON DE INGRESO A LA APLICACION------- -->
+
     </div>
     <div id="botonIngreso">
-         <!-- <button type="button" id="ingreso1" value=""> -->
-          <!--  <a href="index.html" target="_blanck" disabled id="link">Ingrese al sistema</a> -->
-          
-        </div>
-        
-        <script src="login.js" defer></script>
-    </body>
-    
-    </html>
+    </div>
+
+        <!--------- SCRIPTS------- -->
+
+    <script src="login.js" defer></script>
+</body>
+
+</html>
