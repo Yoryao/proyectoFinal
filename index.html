@@ -46,11 +46,11 @@
                 <input type="email" name="Email" id="emailPac">
             </label>
             <label>Doctor
-                    <select name="doctor" id="doctorPac">
+                <select name="doctor" id="doctorPac">
                     <option value="value1">Value 1</option>
                     <option value="value2" selected>Value 2</option>
                     <option value="value3">Value 3</option>
-                  </select>
+                </select>
             </label>
             <label>Cobertura
                 <input type="text" name="cobertura" id="coberturaPac">
@@ -64,24 +64,25 @@
         <div id="formMedicos">
             <h3>Ingreso de Medicos</h3>
             <label>Nombre
-                <input type="text" name="nombre" id="nombre">
+                <input type="text" name="nombreDoc" id="nombreDoc">
             </label>
             <label>Apellido
-                <input type="text" name="apellido" id="apellido">
+                <input type="text" name="apellido" id="apellidoDoc">
             </label>
             <label>Dni
-                <input type="number" name="dni" id="dni">
+                <input type="number" name="dni" id="dniDoc">
             </label>
-            <label>Email
-                <input type="email" name="Email" id="Email">
-            </label>
-            <label>Especialidad
-                <input type="text" name="doctor" id="doctor">
+            <label>Consultorio
+                <select name="doctorBox" id="boxDoc">
+                    <option value="1">Box 1</option>
+                    <option value="2">Box 2</option>
+                    <option value="3">Box 3</option>
+                </select>
             </label>
             <label>Cobertura Aceptadas
-                <input type="text" name="cobertura" id="cobertura">
+                <input type="text" name="cobertura" id="coberturaDoc">
             </label>
-            <input type="submit" value="Ingresar">
+            <input type="submit" value="Ingresar" id="ingresarDoc">
             <input type="reset" value="Borrar">
 
 
@@ -92,68 +93,60 @@
 
     <!-- INGRESO SECCION LISTA DE PACIENTES POR MEDICO -->
     <h2 class="tituloSeccion">LISTA DE ESPERA POR MEDICO</h2>
+
     <section id="contenedores">
-
-
-
         <div class="listaEspera">
             <h3 class="consultorioMedico" id="box1">Consultorio 1</h3>
             <h4 class="nombreDoctor" id="doctor1">Medico 1</h4>
 
             <div id="consultorio1">
 
-                <p id="consultorioOcupado">CONSULTORIO VACIO</p>
-
-                <button id="liberar">LIBERAR CONSULTORIO</button>
+                <p id="consultorioOcupado1">CONSULTORIO VACIO</p>
+                <button id="liberar1">LIBERAR CONSULTORIO</button>
 
             </div>
 
+            <button id="refresh1">Actualizar lista de espera</button>
 
-            <button id="refresh">Actualizar lista de espera</button>
-
-
-            <div class="listaPacientesPorMedico" id="medico1">
-
-            </table>
-
-
-
-
+            <div class="listaPacientesPorMedico1" id="medico1">
+                </table>
+            </div>
         </div>
-
-
-
-
-
-
-
-
-
-
 
         <div class="listaEspera">
             <h3 class="consultorioMedico" id="box2">Consultorio 2</h3>
             <h4 class="nombreDoctor" id="doctor2">Medico 2</h4>
-            <table class="listaPacientesPorMedico" id="medico2">
-                <li>Paciente 2-1</li>
-                <li>Paciente 2-2</li>
-                <li>Paciente 2-3</li>
-                <li>Paciente 2-4</li>
-                <li>Paciente 2-5</li>
-            </table>
-        </div>
-        <div class="listaEspera">
 
+            <div id="consultorio2">
+
+                <p id="consultorioOcupado2">CONSULTORIO VACIO</p>
+                <button id="liberar2">LIBERAR CONSULTORIO</button>
+
+            </div>
+
+            <button id="refresh2">Actualizar lista de espera</button>
+
+            <div class="listaPacientesPorMedico" id="medico2">
+                </table>
+            </div>
+        </div>
+
+        <div class="listaEspera">
             <h3 class="consultorioMedico" id="box3">Consultorio 3</h3>
             <h4 class="nombreDoctor" id="doctor3">Medico 3</h4>
 
-            <ol class="listaPacientesPorMedico" id="medico3">
-                <li>Paciente 3-1</li>
-                <li>Paciente 3-2</li>
-                <li>Paciente 3-3</li>
-                <li>Paciente 3-4</li>
-                <li>Paciente 3-5</li>
-            </ol>
+            <div id="consultorio3">
+
+                <p id="consultorioOcupado3">CONSULTORIO VACIO</p>
+                <button id="liberar3">LIBERAR CONSULTORIO</button>
+
+            </div>
+
+            <button id="refresh3">Actualizar lista de espera</button>
+
+            <div class="listaPacientesPorMedico" id="medico3">
+                </table>
+            </div>
         </div>
     </section>
 
