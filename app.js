@@ -208,7 +208,7 @@ function ingresarDoctor() {
     const message = `El Doctor ${doctor.apellido} se ha registrado para atender en el ${doctor.consultorio}.`;
     advice.innerText = message;
 
-    const adviceBox = document.getElementById(`box${box}`);
+    const adviceBox = document.getElementById(`doctor${box}`);
     adviceBox.innerText = `Dr. ${doctor.nombre} ${doctor.apellido}`;
     
   };
@@ -314,4 +314,6 @@ function ingresarPaciente() {
     
     //CARGO AL PACIENTE A LA LISTA DE ESPERA.
     listaPacientes.push(paciente);
+
+    console.log(listaPacientes)
     };
