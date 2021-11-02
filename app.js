@@ -1,34 +1,29 @@
 //PAGINA WEB PARA GESTIONAR LA ATENCIÓN DE UN CONSULTORIO MEDICO.
 
-//INICIO LISTA DE ARRAYS.
+//INICIO LISTAS DE ARRAYS.
 
 let listaTurnos = []; // TURNOS DEL DIA.
 let listaPacientes = [
   {
-    nombre: "jorge",
-    dni: 29946811,
-    apellido: "Rivera",
+    nombre: "Andy ",
+    dni: 11111111,
+    apellido: "Dufresne",
   },
   {
-    nombre: "Romina",
-    dni: 33082251,
-    apellido: "Fernandez",
+    nombre: "John",
+    dni: 22222222,
+    apellido: "Coffey",
   },
   {
-    nombre: "Almita",
-    dni: 54996245,
-    apellido: "Fernandez Rivera",
+    nombre: "Eddie",
+    dni: 33333333,
+    apellido: "Dupris",
   },
   {
-    nombre: "Helena",
-    dni: 58252869,
-    apellido: "Fernandez Rivera",
-  },
-  {
-    nombre: "Iron",
-    dni: 25,
-    apellido: "Man",
-  },
+    nombre: "Billy",
+    dni: 44444444,
+    apellido: "Chapel",
+  }
 ]; // INGRESOS AL CENTRO MEDICO
 let listaBox1 = []; // INGRESO AL CONSULTORIO.
 let listaCoberturas = []; //COBERTURAS PERMITIDAS.
@@ -52,6 +47,7 @@ class Paciente {
   }
 
   //FUNCION PARA REGISTRAR EL INGRESO Al CENTRO MEDICO
+  //OBSOLETO
   ingresar = (index) => {
     if (this.ingresado != true) {
       this.ingresado = true;
@@ -66,7 +62,8 @@ class Paciente {
   };
 
   //FUNCION PARA REGISTRAR EL EGRESO DEL CENTRO MEDICO
-  egresar = (index) => {
+  //OBSOLETO
+    egresar = (index) => {
     if (this.retirado != true) {
       this.retirado = true;
       this.ingresado = false;
@@ -86,14 +83,9 @@ class Paciente {
 
 //--------------INICIO CENTRO MEDICO----------
 //CLASE CREACION DE EDIFICIO. GENERA CONSULTORIOS Y LISTA DE TURNOS DE LOS PACIENTES QUE ASISTIRAN ESE DÍA.
-//MOSTRAR TIEMPO APROXIMADO PARA TERMINAR LAS CONSULTAS
-//MOSTRAR CONSULTORIOS DISPONIBLES.
-//MOSTRAR LOS PACIENTES EN FILA POR MEDICO
-//MOSTRAR EL TIEMPO DE ESPERA ESTIMADO PARA SER ATENDIDO
-//CANTIDAD DE PERSONAS DENTRO DEL CENTRO.
+//MOSTRAR TIEMPO APROXIMADO PARA TERMINAR LAS CONSULTAS Y EL TIEMPO DE ESPERA ESTIMADO PARA SER ATENDIDO
 //VALIDAR OBRAS SOCIALES PERMITIDAS
-//PERSONAL ADMINISTRATIVO.
-//MANEJO DE CAJA.
+
 
 class Edificio {
   constructor() {
@@ -147,7 +139,7 @@ class Edificio {
 
 //------------------INICIO DE DOCTOR-----------------------------
 
-// //DEFINIR LA CLASE PARA HABILITAR UN MEDICO AL CENTRO MEDICO
+//DEFINIR LA CLASE PARA HABILITAR UN MEDICO AL CENTRO MEDICO
 class Doctor {
     constructor ( nombre, apellido, dni, consultorio, cobertura) {
       this.nombre = nombre,  
@@ -183,9 +175,10 @@ class Doctor {
 //------------------FIN DE DOCTOR--------------------------------
 
 //-------------EJECUCIONES DE VISUALIZACIÓN DE LA APLICACIÓN-----
+//-------INVOCADAS POR EVENTOS
 
-
-//DECLARO LA FUNCIÓN QUE CREA EL PACIENTE NUEVO INVOCANDO AL CONSTRUCTOR.
+//CREAR NUEVO DOCTOR
+//DECLARO LA FUNCIÓN QUE CREA EL DOCTOR NUEVO INVOCANDO AL CONSTRUCTOR.
 function ingresarDoctor() {
   //CAPTURO VALORES DESDE EL FORMULARIO.
   let nombre = document.getElementById("nombreDoc").value;
@@ -213,10 +206,8 @@ function ingresarDoctor() {
     
   };
   
-  
-
-  
   //CREA LA LISTA DE ESPERA EN BASE A LOS PACIENTES INGRESADOS
+  
   const actualizarEspera = () => {
     const div = document.getElementById("medico1");
     div.innerHTML = "";
@@ -237,6 +228,8 @@ function ingresarDoctor() {
     });
   };
   
+
+  //ELIMINIO EL PACIENTE DEL BOX
   const vaciarBox = () => {
     listaBox1 = [];
     let atendiendo1 = document.getElementById("consultorioOcupado1");
@@ -263,18 +256,21 @@ function ingresarDoctor() {
 let regButton = document.getElementById("ingresar");
 regButton.addEventListener("click", ingresarPaciente);
 
+//EVENTO DEL USUARIO PARA CREAR EL DOCTOR.
 let btnIngresarDoc = document.getElementById("ingresarDoc");
 btnIngresarDoc.addEventListener("click", ingresarDoctor);
 
+//EVENTO DEL USUARIO PARA CREAR LISTA DE ESPERA.
 let btnRefresh1 = document.getElementById("refresh1");
 btnRefresh1.addEventListener("click", actualizarEspera);
 
+//EVENTO DEL USUARIO PARA LIBERAR CONSULTORIO.
 let btnVaciarConsultorio1 = document.getElementById("liberar1");
 btnVaciarConsultorio1.addEventListener("click", vaciarBox);
 
 //DECLARO UNA FUNCION QUE CARGA DATOS AL DOM PARA INFORMAR EL STATUS DE LA APP.(FECHA, HORA, USER)
 function date() {
-  //INSERTAR HORA
+  //INSERTAR FECHA
   const hora = document.getElementById("date");
   hora.innerText = new Date().toDateString();
   
@@ -287,6 +283,7 @@ function date() {
 //INTERVALO DE LA FUNCION STATUS PARA FUNCIONAMIENTO DEL RELOJ.
 setInterval(date,1000);
 
+//MOSTRAR USUARIO LOGUEADO
 function usuarioLogeado() {
 //INSERTAR USUARIO
 let user = document.getElementById("user");
@@ -296,6 +293,8 @@ user.innerText = `Usuario: ${logeado}`;
 
 usuarioLogeado();
 
+
+//FUNCION CREAR PACIENTE
 function ingresarPaciente() {
   //CAPTURO VALORES DESDE EL FORMULARIO.
   let nombre = document.getElementById("nombrePac").value;
