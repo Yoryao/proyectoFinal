@@ -26,6 +26,8 @@ function registro(e) {
 
   //CON CADA CREACION DE USUARIO ENVIO LOS DATOS AL STORAGE.
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+  alert("Ya puede realizar el Login.")
 }
 
 
@@ -50,6 +52,9 @@ function login(e) {
     //passwords iguales: se habilita el ingreso.
     alert("Bienvenido.");
     
+    //GUARDO EL NOMBRE DEL USUARIO PARA LEVANTARLO DESDE EL INDEX.
+    localStorage.setItem("usuario", JSON.stringify(nombreLogin));
+
     const boton = document.getElementById("botonIngreso");
     boton.innerHTML = `<button type="button" id="ingreso1" value="Ingresar al sistema"><a href="index.html" target="_blank">INGRESO AL SISTEMA</a></button>`;
     document.body.append(boton);

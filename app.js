@@ -273,9 +273,7 @@ let btnVaciarConsultorio1 = document.getElementById("liberar1");
 btnVaciarConsultorio1.addEventListener("click", vaciarBox);
 
 //DECLARO UNA FUNCION QUE CARGA DATOS AL DOM PARA INFORMAR EL STATUS DE LA APP.(FECHA, HORA, USER)
-let reloj;
-
-function statusApp() {
+function date() {
   //INSERTAR HORA
   const hora = document.getElementById("date");
   hora.innerText = new Date().toDateString();
@@ -284,15 +282,19 @@ function statusApp() {
   const fecha = document.getElementById("hour");
   fecha.innerText = new Date().toLocaleTimeString();
   
-  //INSERTAR USUARIO
-  const user = document.getElementById("user");
-  user.innerText = localStorage.getItem("userLogged"); //ESTO LO TENGO QUE TRAER DESDE EL LOGIN.
-}
-
-function relojNav(){
-  let reloj = setTimeout(statusApp, 1000);
 };
-relojNav();
+
+//INTERVALO DE LA FUNCION STATUS PARA FUNCIONAMIENTO DEL RELOJ.
+setInterval(date,1000);
+
+function usuarioLogeado() {
+//INSERTAR USUARIO
+let user = document.getElementById("user");
+let logeado = JSON.parse(localStorage.getItem("usuario"));
+user.innerText = `Usuario: ${logeado}`;
+};
+
+usuarioLogeado();
 
 function ingresarPaciente() {
   //CAPTURO VALORES DESDE EL FORMULARIO.
