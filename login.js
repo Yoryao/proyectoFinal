@@ -27,7 +27,8 @@ function registro(e) {
   //CON CADA CREACION DE USUARIO ENVIO LOS DATOS AL STORAGE.
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-  alert("Ya puede realizar el Login.")
+let encabezado = document.getElementById("encabezado");
+encabezado.innerText = "Ya puede realizar el Login.";
 }
 
 
@@ -42,15 +43,21 @@ function login(e) {
   let nombreLogin = document.getElementById("nombrelogin").value;
   let passwordLogin = document.getElementById("passwordLogin").value;
   
+
+  
   //RECORRE LOS OBJETOS-USUARIOS CON EL PARAMETRO NOMBRE.
   let usuarioRegistrado = usuariosRegistrados.find((user) => user.nombre === nombreLogin);
   
   //ACA TENEMOS QUE MANEJAR EL ERROR CUANDO NO EXISTE EL USUARIO
-  
+//PROBAR TRY CATCH
+
   //VERIFICO EQUIVALENCIA ENTRE PASSWORD INGRESA Y PASSWORD REGISTRADO.
-    if (passwordLogin === `${usuarioRegistrado.password}`){
+  if ((usuarioRegistrado) && (passwordLogin === `${usuarioRegistrado.password}`)){
     //passwords iguales: se habilita el ingreso.
-    alert("Bienvenido.");
+    
+let encabezado = document.getElementById("encabezado");
+encabezado.innerText = "Ya puede ingresar al sistema.";
+
     
     //GUARDO EL NOMBRE DEL USUARIO PARA LEVANTARLO DESDE EL INDEX.
     localStorage.setItem("usuario", JSON.stringify(nombreLogin));
@@ -59,7 +66,9 @@ function login(e) {
     boton.innerHTML = `<button type="button" id="ingreso1" value="Ingresar al sistema"><a href="index.html" target="_blank">INGRESO AL SISTEMA</a></button>`;
     document.body.append(boton);
     } else {
-      alert("LOS DATOS NO COINCIDEN!")
+     
+let encabezado = document.getElementById("encabezado");
+encabezado.innerText = "Los datos no coinciden!";
     }
 };
 
