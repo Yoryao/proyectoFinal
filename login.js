@@ -34,7 +34,7 @@ encabezado.innerText = "Ya puede realizar el Login.";
 
 //FUNCION LOGIN DE USUARIO
 function login(e) {
-  e.preventDefault();
+  
 
   //EXTRAIGO LOS USUARIOS DEL STORAGE Y LO PARSEO. 
   let usuariosRegistrados = JSON.parse(localStorage.getItem("usuarios"));
