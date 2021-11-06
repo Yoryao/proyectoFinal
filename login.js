@@ -7,7 +7,6 @@ class Usuario {
 
 //ARRAY VACIO PARA GUARDAR LOS USUARIOS Y ENVIAR AL STORAGE
 let usuarios = [];
-
 //------------PENDIENTE
 //MANEJAR EL ERROR DE QUE SE REESCRIBE EL REGISTRO
 //IMPEDIR CREACION DUPLICADA DE NOMBRE DE USUARIO
@@ -19,6 +18,8 @@ function registro(e) {
   // CAPTURO DATOS DEL USUARIO.
   const nombreRegistro = document.getElementById("nombreRegistro").value;
   const passwordRegistro = document.getElementById("passwordRegistro").value;
+  let nombreExistente = usuarios.find((user) => user.nombre === nombreRegistro);
+  if (!nombreExistente) {
 
   //CREO EL OBJETO USUARIO Y LO ENVIO AL STORAGE CONVERTIDO EN JSON
   const usuario = new Usuario(nombreRegistro, passwordRegistro);
@@ -27,37 +28,30 @@ function registro(e) {
   //CON CADA CREACION DE USUARIO ENVIO LOS DATOS AL STORAGE.
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-let encabezado = document.getElementById("encabezado");
-encabezado.innerText = "Ya puede realizar el Login.";
-}
+  mostrarDisplay("ya puede realizar el Login");
 
+  } else {
+    mostrarDisplay("Ese nombre ya esta registrado.");
+  }
+};
 
 //FUNCION LOGIN DE USUARIO
 function login(e) {
-  
+  e.preventDefault();  
 
   //EXTRAIGO LOS USUARIOS DEL STORAGE Y LO PARSEO. 
   let usuariosRegistrados = JSON.parse(localStorage.getItem("usuarios"));
-  
   //CAPTURO LOS DATOS INGRESADOS EN EL LOGIN
   let nombreLogin = document.getElementById("nombrelogin").value;
   let passwordLogin = document.getElementById("passwordLogin").value;
-  
-
-  
   //RECORRE LOS OBJETOS-USUARIOS CON EL PARAMETRO NOMBRE.
   let usuarioRegistrado = usuariosRegistrados.find((user) => user.nombre === nombreLogin);
   
-  //ACA TENEMOS QUE MANEJAR EL ERROR CUANDO NO EXISTE EL USUARIO
-//PROBAR TRY CATCH
-
-  //VERIFICO EQUIVALENCIA ENTRE PASSWORD INGRESA Y PASSWORD REGISTRADO.
+   //VERIFICO EQUIVALENCIA ENTRE PASSWORD INGRESA Y PASSWORD REGISTRADO.
   if ((usuarioRegistrado) && (passwordLogin === `${usuarioRegistrado.password}`)){
     //passwords iguales: se habilita el ingreso.
     
-let encabezado = document.getElementById("encabezado");
-encabezado.innerText = "Ya puede ingresar al sistema.";
-
+    mostrarDisplay("ya puede ingresar al sistema.");
     
     //GUARDO EL NOMBRE DEL USUARIO PARA LEVANTARLO DESDE EL INDEX.
     localStorage.setItem("usuario", JSON.stringify(nombreLogin));
@@ -67,8 +61,8 @@ encabezado.innerText = "Ya puede ingresar al sistema.";
     document.body.append(boton);
     } else {
      
-let encabezado = document.getElementById("encabezado");
-encabezado.innerText = "Los datos no coinciden!";
+      mostrarDisplay("Los datos de ingreso no coinciden.");
+
     }
 };
 
@@ -79,6 +73,12 @@ regButton.addEventListener("click", registro);
 
 let logButton = document.getElementById("logButton");
 logButton.addEventListener("click", login);
+
+//FUNCIONES
+function mostrarDisplay(msg) {
+  let display = document.getElementById("encabezado");
+  display.innerText = msg ;
+};
 
 //VERIFICACIONES
 console.log(usuarios);

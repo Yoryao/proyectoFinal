@@ -4,7 +4,7 @@
 
 let listaTurnos = []; // TURNOS DEL DIA.
 let listaPacientes = [
-  /*{
+  {
     nombre: "Andy ",
     dni: 11111111,
     apellido: "Dufresne",
@@ -23,13 +23,12 @@ let listaPacientes = [
     nombre: "Billy",
     dni: 44444444,
     apellido: "Chapel",
-  }*/
+  }
 ]; // INGRESOS AL CENTRO MEDICO
 let listaBox1 = []; // INGRESO AL CONSULTORIO.
 let listaCoberturas = []; //COBERTURAS PERMITIDAS.
 
 //FIN LISTA DE ARRAYS
-
 
 //------------------INICIO PACIENTE--------------------
 //DEFINIR LA CLASE PARA CREAR UN PACIENTE QUE SE ATENDERA EN CENTRO MEDICO
@@ -47,13 +46,6 @@ class Paciente {
   }
 }
 
-//--------------FIN PACIENTE------------------
-
-//--------------INICIO CENTRO MEDICO----------
-//CLASE CREACION DE EDIFICIO. GENERA CONSULTORIOS Y LISTA DE TURNOS DE LOS PACIENTES QUE ASISTIRAN ESE DÍA.
-//MOSTRAR TIEMPO APROXIMADO PARA TERMINAR LAS CONSULTAS Y EL TIEMPO DE ESPERA ESTIMADO PARA SER ATENDIDO
-//VALIDAR OBRAS SOCIALES PERMITIDAS
-
 class Edificio {
   constructor() {
     this.box1 = false;
@@ -61,8 +53,6 @@ class Edificio {
     this.box3 = false;
   }
 }
-
-//------------------FIN CENTRO MEDICO----------------------------
 
 //------------------INICIO DE DOCTOR-----------------------------
 
@@ -76,7 +66,7 @@ class Doctor {
       (this.cobertura = cobertura),
       (this.atendiendo = false);
   }
-};
+}
 
 //------------------FIN DE DOCTOR--------------------------------
 
@@ -125,7 +115,6 @@ const actualizarEspera = () => {
 
     div.appendChild(lista);
   });
-  console.log(listaPacientes);
 };
 
 //ELIMINIO EL PACIENTE DEL BOX
@@ -135,9 +124,10 @@ const vaciarBox = () => {
   atendiendo1.innerText = "CONSULTORIO VACIO";
 };
 
-//tenia el siguiente problema... .los pacientes pre cargados en el array, con dni number, podian ingresar sin problema en ingresarPaciente().
+//tenia el siguiente problema... .los pacientes pre cargados en el array, con dni number, podian ingresar sin problema en ingresarConsultorio(dni).
 //Pero los que creaba con el constructor y formulario, se creaban bien, se agregaban a listaPacientes[], pero no se ejecutaban en
-//ingresarPaciente(). esto lo corregi con suerte, poniendo el campo dni en texto en el form, y parseando el valor cuando lo capturo.
+//ingresarConsultorio(). dando error "Uncaught TypeError: Cannot read property 'nombre' of undefined"
+// esto lo corregi con suerte, poniendo el campo dni en texto en el form, y parseando el valor cuando lo capturo.
 
 //FUNCION CREAR PACIENTE
 function ingresarPaciente() {
@@ -160,15 +150,11 @@ function ingresarPaciente() {
   );
 
   // //MODIFICO EL DOM INFORMANDO LO REALIZADO.
-
   mostrarDisplay(
     `El paciente ${paciente.nombre} se ha registrado para ser atendido en el consultorio.`
   );
-
   //CARGO AL PACIENTE A LA LISTA DE ESPERA.
   listaPacientes.push(paciente);
-
-  console.log(listaPacientes);
 }
 
 //PROMOCION DE LISTA DE ESPERA A CONSULTORIO

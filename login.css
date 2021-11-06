@@ -24,8 +24,10 @@ header {
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
-    border: 3px blue dotted;
+    /* border: 3px blue dotted; */
     background-color: coral;
+    border-radius: 10px;
+
 }
 
 #regForm, #logForm {
@@ -39,7 +41,9 @@ header {
     margin-right: 5%;
     flex-direction: column;
     margin-top: 20px;
-    border: 2px solid red;
+    border-radius: 10px;
+
+    /* border: 2px solid red; */
 }
 
 label {
@@ -82,5 +86,10 @@ button, a {
     
 }
 #botonIngreso {
-    border: 3px solid black;
+    margin-top: 20px;
+    margin-left: auto;
+    /* border: 3px solid black; */
+   display: flex;
+   justify-content: center;
+
 }
