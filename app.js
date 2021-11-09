@@ -43,59 +43,60 @@ class Paciente {
       (this.ingresado = false),
       (this.atendido = false),
       (this.retirado = false);
+    }
   }
-}
-
-class Edificio {
-  constructor() {
-    this.box1 = false;
-    this.box2 = false;
-    this.box3 = false;
+  
+  class Edificio {
+    constructor() {
+      this.box1 = false;
+      this.box2 = false;
+      this.box3 = false;
+    }
   }
-}
 
-//------------------INICIO DE DOCTOR-----------------------------
-
-//DEFINIR LA CLASE PARA HABILITAR UN MEDICO AL CENTRO MEDICO
-class Doctor {
-  constructor(nombre, apellido, dni, consultorio, cobertura) {
-    (this.nombre = nombre),
+  //------------------INICIO DE DOCTOR-----------------------------
+  
+  //DEFINIR LA CLASE PARA HABILITAR UN MEDICO AL CENTRO MEDICO
+  class Doctor {
+    constructor(nombre, apellido, dni, consultorio, cobertura) {
+      (this.nombre = nombre),
       (this.apellido = apellido),
       (this.dni = dni),
       (this.consultorio = consultorio),
       (this.cobertura = cobertura),
       (this.atendiendo = false);
+    }
   }
-}
+  
+  //------------------FIN DE DOCTOR--------------------------------
+  
+  //-------------EJECUCIONES DE VISUALIZACIÓN DE LA APLICACIÓN-----
+  //-------INVOCADAS POR EVENTOS
+  
+  // //EVENTO DEL USUARIO PARA CREAR EL DOCTOR.
+  $("#ingresarDoc").click(function () {
+    //CAPTURO VALORES DESDE EL FORMULARIO.
+    let nombre = $("#nombreDoc").val();
+    let apellido = $("#apellidoDoc").val();
+    let dni = $("#dniDoc").val();
+    let box = $("#boxDoc").val();
+    let cobertura = $("#coberturaDoc").val();;
+    
+    //INVOCO AL CONSTRUCTOR.
+    const doctor = new Doctor(nombre, apellido, dni, box, cobertura);
+    
+    mostrarDisplay(
+      `El Doctor ${doctor.apellido} se ha registrado para atender en el box ${doctor.consultorio}.`
+      );
 
-//------------------FIN DE DOCTOR--------------------------------
-
-//-------------EJECUCIONES DE VISUALIZACIÓN DE LA APLICACIÓN-----
-//-------INVOCADAS POR EVENTOS
-
-//CREAR NUEVO DOCTOR
-//DECLARO LA FUNCIÓN QUE CREA EL DOCTOR NUEVO INVOCANDO AL CONSTRUCTOR.
-function ingresarDoctor() {
-  //CAPTURO VALORES DESDE EL FORMULARIO.
-  let nombre = document.getElementById("nombreDoc").value;
-  let apellido = document.getElementById("apellidoDoc").value;
-  let dni = document.getElementById("dniDoc").value;
-  let box = document.getElementById("boxDoc").value;
-  let cobertura = document.getElementById("coberturaDoc").value;
-
-  //INVOCO AL CONSTRUCTOR.
-  const doctor = new Doctor(nombre, apellido, dni, box, cobertura);
-
-  mostrarDisplay(
-    `El Doctor ${doctor.apellido} se ha registrado para atender en el box ${doctor.consultorio}.`
-  );
-
-  const adviceBox = document.getElementById(`doctor${box}`);
-  adviceBox.innerText = `Dr. ${doctor.nombre} ${doctor.apellido}`;
-}
-
-//CREA LA LISTA DE ESPERA EN BASE A LOS PACIENTES INGRESADOS
-
+      
+      
+      const adviceBox = document.getElementById(`doctor${box}`);
+      adviceBox.innerText = `Dr. ${doctor.nombre} ${doctor.apellido}`;
+    });
+    
+    //CREA LA LISTA DE ESPERA EN BASE A LOS PACIENTES INGRESADOS
+    
 const actualizarEspera = () => {
   const div = document.getElementById("medico1");
   div.innerHTML = "";
@@ -188,9 +189,6 @@ const cancelarConsultorio = (dni) => {
 let regButton = document.getElementById("ingresar");
 regButton.addEventListener("click", ingresarPaciente);
 
-//EVENTO DEL USUARIO PARA CREAR EL DOCTOR.
-let btnIngresarDoc = document.getElementById("ingresarDoc");
-btnIngresarDoc.addEventListener("click", ingresarDoctor);
 
 //EVENTO DEL USUARIO PARA CREAR LISTA DE ESPERA.
 let btnRefresh1 = document.getElementById("refresh1");
@@ -224,8 +222,8 @@ function usuarioLogeado() {
 
 usuarioLogeado();
 
+
 function mostrarDisplay(msg) {
-  //MODIFICO EL DOM INFORMANDO LO REALIZADO. // puedo hacer una función con esto.
-  const advice = document.getElementById("display");
-  advice.innerText = msg;
+  //MODIFICO EL DOM INFORMANDO LO REALIZADO.
+  $("#display").text(msg);
 }
