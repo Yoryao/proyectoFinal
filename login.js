@@ -74,10 +74,15 @@ regButton.addEventListener("click", registro);
 let logButton = document.getElementById("logButton");
 logButton.addEventListener("click", login);
 
-//FUNCIONES
+// //FUNCIONES
+// function mostrarDisplay(msg) {
+//   let display = document.getElementById("encabezado");
+//   display.innerText = msg ;
+// };
+
+
 function mostrarDisplay(msg) {
-  let display = document.getElementById("encabezado");
-  display.innerText = msg ;
+  $("#encabezado").text(msg)
 };
 
 //VERIFICACIONES
