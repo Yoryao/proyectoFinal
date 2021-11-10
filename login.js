@@ -52,7 +52,7 @@ $("#logButton").click(function (e) {
   //VERIFICO EQUIVALENCIA ENTRE PASSWORD INGRESA Y PASSWORD REGISTRADO.
   if (usuarioRegistrado && passwordLogin === `${usuarioRegistrado.password}`) {
     //passwords iguales: se habilita el ingreso.
-     mostrarDisplay("ya puede ingresar al sistema.");
+    mostrarDisplay("ya puede ingresar al sistema.");
 
     //GUARDO EL NOMBRE DEL USUARIO PARA LEVANTARLO DESDE EL INDEX.
     localStorage.setItem("usuario", JSON.stringify(nombreLogin));

@@ -1,7 +1,11 @@
 //PAGINA WEB PARA GESTIONAR LA ATENCIÓN DE UN CONSULTORIO MEDICO.
 
-//INICIO LISTAS DE ARRAYS.
+//MOSTRAR USUARIO LOGUEADO
+$(() => {
+  $("#user").text(`Usuario: ${JSON.parse(localStorage.getItem("usuario"))}`);
+});
 
+//INICIO LISTAS DE ARRAYS.
 let listaTurnos = []; // TURNOS DEL DIA.
 let listaPacientes = [
   {
@@ -23,12 +27,10 @@ let listaPacientes = [
     nombre: "Billy",
     dni: 44444444,
     apellido: "Chapel",
-  }
+  },
 ]; // INGRESOS AL CENTRO MEDICO
 let listaBox1 = []; // INGRESO AL CONSULTORIO.
 let listaCoberturas = []; //COBERTURAS PERMITIDAS.
-
-//FIN LISTA DE ARRAYS
 
 //------------------INICIO PACIENTE--------------------
 //DEFINIR LA CLASE PARA CREAR UN PACIENTE QUE SE ATENDERA EN CENTRO MEDICO
@@ -43,102 +45,63 @@ class Paciente {
       (this.ingresado = false),
       (this.atendido = false),
       (this.retirado = false);
-    }
   }
-  
-  class Edificio {
-    constructor() {
-      this.box1 = false;
-      this.box2 = false;
-      this.box3 = false;
-    }
-  }
+}
 
-  //------------------INICIO DE DOCTOR-----------------------------
-  
-  //DEFINIR LA CLASE PARA HABILITAR UN MEDICO AL CENTRO MEDICO
-  class Doctor {
-    constructor(nombre, apellido, dni, consultorio, cobertura) {
-      (this.nombre = nombre),
+class Edificio {
+  constructor() {
+    this.box1 = false;
+    this.box2 = false;
+    this.box3 = false;
+  }
+}
+
+//------------------INICIO DE DOCTOR-----------------------------
+//DEFINIR LA CLASE PARA HABILITAR UN MEDICO AL CENTRO MEDICO
+class Doctor {
+  constructor(nombre, apellido, dni, box, cobertura) {
+    (this.nombre = nombre),
       (this.apellido = apellido),
       (this.dni = dni),
-      (this.consultorio = consultorio),
+      (this.box = box),
       (this.cobertura = cobertura),
       (this.atendiendo = false);
-    }
   }
-  
-  //------------------FIN DE DOCTOR--------------------------------
-  
-  //-------------EJECUCIONES DE VISUALIZACIÓN DE LA APLICACIÓN-----
-  //-------INVOCADAS POR EVENTOS
-  
-  // //EVENTO DEL USUARIO PARA CREAR EL DOCTOR.
-  $("#ingresarDoc").click(function () {
-    //CAPTURO VALORES DESDE EL FORMULARIO.
-    let nombre = $("#nombreDoc").val();
-    let apellido = $("#apellidoDoc").val();
-    let dni = $("#dniDoc").val();
-    let box = $("#boxDoc").val();
-    let cobertura = $("#coberturaDoc").val();;
-    
-    //INVOCO AL CONSTRUCTOR.
-    const doctor = new Doctor(nombre, apellido, dni, box, cobertura);
-    
-    mostrarDisplay(
-      `El Doctor ${doctor.apellido} se ha registrado para atender en el box ${doctor.consultorio}.`
-      );
+}
 
-      
-      
-      const adviceBox = document.getElementById(`doctor${box}`);
-      adviceBox.innerText = `Dr. ${doctor.nombre} ${doctor.apellido}`;
-    });
-    
-    //CREA LA LISTA DE ESPERA EN BASE A LOS PACIENTES INGRESADOS
-    
-const actualizarEspera = () => {
-  const div = document.getElementById("medico1");
-  div.innerHTML = "";
-
-  listaPacientes.forEach((paciente) => {
-    const lista = document.createElement("div");
-
-    lista.className = "pacienteEsperando";
-    lista.innerHTML = `
-      <p>${paciente.nombre}</p>
-      <p> ${paciente.apellido}</p>
-      <button onclick="ingresarConsultorio(${paciente.dni})" 
-      class="btn-ing-con">INGRESAR</button>
-      <button onclick="cancelarConsultorio(${paciente.dni})"
-      class="btn-can-con">CANCELAR</button>    
-      `;
-
-    div.appendChild(lista);
-  });
-};
-
-//ELIMINIO EL PACIENTE DEL BOX
-const vaciarBox = () => {
-  listaBox1 = [];
-  let atendiendo1 = document.getElementById("consultorioOcupado1");
-  atendiendo1.innerText = "CONSULTORIO VACIO";
-};
-
-//tenia el siguiente problema... .los pacientes pre cargados en el array, con dni number, podian ingresar sin problema en ingresarConsultorio(dni).
-//Pero los que creaba con el constructor y formulario, se creaban bien, se agregaban a listaPacientes[], pero no se ejecutaban en
-//ingresarConsultorio(). dando error "Uncaught TypeError: Cannot read property 'nombre' of undefined"
-// esto lo corregi con suerte, poniendo el campo dni en texto en el form, y parseando el valor cuando lo capturo.
-
-//FUNCION CREAR PACIENTE
-function ingresarPaciente() {
+// //EVENTO DEL USUARIO PARA CREAR EL DOCTOR.
+$("#ingresarDoc").click(function () {
   //CAPTURO VALORES DESDE EL FORMULARIO.
-  let nombre = document.getElementById("nombrePac").value;
-  let dni = parseInt(document.getElementById("dniPac").value);
-  let apellido = document.getElementById("apellidoPac").value;
-  let email = document.getElementById("emailPac").value;
-  let doctor = document.getElementById("doctorPac").value;
-  let cobertura = document.getElementById("coberturaPac").value;
+  let nombre = $("#nombreDoc").val();
+  let apellido = $("#apellidoDoc").val();
+  let dni = $("#dniDoc").val();
+  let box = $("#boxDoc").val();
+  let cobertura = $("#coberturaDoc").val();
+
+  //INVOCO AL CONSTRUCTOR.
+  const doctor = new Doctor(nombre, apellido, dni, box, cobertura);
+
+  mostrarDisplay(
+    `El Doctor ${doctor.apellido} se ha registrado para atender en el box ${doctor.box}.`
+  );
+
+  $(`#doctor${box}`).text(`Dr. ${doctor.nombre} ${doctor.apellido}`);
+  console.log(doctor);
+});
+
+//EVENTO DEL USUARIO PARA CREAR EL PACIENTE.
+/*
+tenia el siguiente problema... .los pacientes pre cargados en el array, con dni number, podian ingresar sin problema en ingresarConsultorio(dni). Pero los que creaba con el constructor y formulario, se creaban bien, se agregaban a listaPacientes[], pero no se ejecutaban en ingresarConsultorio(). dando error "Uncaught TypeError: Cannot read property 'nombre' of undefined". esto lo corregi con suerte, poniendo el campo dni en texto en el form, y parseando el valor cuando lo capturo.*/
+
+$("#ingresar").click(function (e) {
+  e.preventDefault();
+
+  let nombre = $("#nombrePac").val();
+  let dni = parseInt($("#dniPac").val());
+  let apellido = $("#apellidoPac").val();
+  let email = $("#emailPac").val();
+  let doctor = $("#doctorPAc").val();
+  let cobertura = $("#coberturaPac").val();
 
   //INVOCO AL CONSTRUCTOR.
   const paciente = new Paciente(
@@ -156,74 +119,109 @@ function ingresarPaciente() {
   );
   //CARGO AL PACIENTE A LA LISTA DE ESPERA.
   listaPacientes.push(paciente);
-}
+});
+
+//FUNCION LIBERAR CONSULTORIO
+$("#liberar1").click(function () {
+  $("#consultorioOcupado1").text("CONSULTORIO VACIO");
+});
+
+//CREA LA LISTA DE ESPERA EN BASE A LOS PACIENTES INGRESADOS
+// //EVENTO DEL USUARIO PARA CREAR LISTA DE ESPERA.
+// let btnRefresh1 = document.getElementById("refresh1");
+// btnRefresh1.addEventListener("click", actualizarEspera);
+
+let id = 1;
+
+let refrescar = $("#refresh1").click(() => {
+  $("#medico1").empty();
+  
+  listaPacientes.forEach((paciente) => {
+    $("#medico1").append(`
+    <p>${paciente.nombre}</p>
+    <p> ${paciente.apellido}</p>
+    <button id="ing${id}"  
+    class="btn-ing-con">INGRESAR</button>
+    <button id="sal${id}"
+    class="btn-can-con">CANCELAR</button>    
+    `);
+    console.log(listaPacientes)
+    $(`#ing${id}`).click(function (dni) {
+      const paciente = listaPacientes.find((paciente) => paciente.dni === dni);
+      
+      listaBox1.push(paciente);
+      
+      console.log("paciente: " + paciente);
+      console.log("Lista Box1" + listaBox1);
+      
+      $("#consultorioOcupado1").text(`${paciente.nombre} ${paciente.nombre}`);
+      
+      refrescar();
+      //actualizarEspera();
+    });
+    
+    $(`#sal${id}`).click(function (dni) {
+      const remover = listaPacientes.find((paciente) => paciente.dni === dni);
+      console.log(remover);
+      listaPacientes.splice(listaPacientes.indexOf(remover), 1);
+      
+      listaBox1.push(paciente);
+      
+      refrescar();
+    });
+    id++;
+  });
+});
+  // const actualizarEspera = () => {
+//   const div = document.getElementById("medico1");
+//   div.innerHTML = "";
+
+//   listaPacientes.forEach((paciente) => {
+//     const lista = document.createElement("div");
+
+//     lista.className = "pacienteEsperando";
+//     lista.innerHTML = `
+//     <p>${paciente.nombre}</p>
+//     <p> ${paciente.apellido}</p>
+//     <button onclick="ingresarConsultorio(${paciente.dni})"
+//     class="btn-ing-con">INGRESAR</button>
+//     <button onclick="cancelarConsultorio(${paciente.dni})"
+//     class="btn-can-con">CANCELAR</button>
+//     `;
+
+//     div.appendChild(lista);
+//   });
+// };
 
 //PROMOCION DE LISTA DE ESPERA A CONSULTORIO
-const ingresarConsultorio = (dni) => {
-  const paciente = listaPacientes.find((paciente) => paciente.dni === dni);
 
-  listaBox1.push(paciente);
-  console.log("paciente: " + paciente);
-  console.log("Lista Box1" + listaBox1);
-  let pacienteNyA = `${paciente.nombre} ${paciente.nombre}`;
+// const ingresarConsultorio = (dni) => {
+//   const paciente = listaPacientes.find((paciente) => paciente.dni === dni);
 
-  let atendiendo1 = document.getElementById("consultorioOcupado1");
-  atendiendo1.innerText = pacienteNyA;
+//   listaBox1.push(paciente);
+//   console.log("paciente: " + paciente);
+//   console.log("Lista Box1" + listaBox1);
+//   let pacienteNyA = `${paciente.nombre} ${paciente.nombre}`;
 
-  const remover = listaPacientes.find((paciente) => paciente.dni === dni);
-  listaPacientes.splice(listaPacientes.indexOf(remover), 1);
+//   let atendiendo1 = document.getElementById("consultorioOcupado1");
+//   atendiendo1.innerText = pacienteNyA;
 
-  actualizarEspera();
-};
+//   const remover = listaPacientes.find((paciente) => paciente.dni === dni);
+//   listaPacientes.splice(listaPacientes.indexOf(remover), 1);
 
-//REMOCION DE LISTA DE ESPERA
-const cancelarConsultorio = (dni) => {
-  const remover = listaPacientes.find((paciente) => paciente.dni === dni);
-  console.log(remover);
-  listaPacientes.splice(listaPacientes.indexOf(remover), 1);
+//   actualizarEspera();
+// };
 
-  actualizarEspera();
-};
-
-//EVENTO DEL USUARIO PARA CREAR EL PACIENTE.
-let regButton = document.getElementById("ingresar");
-regButton.addEventListener("click", ingresarPaciente);
-
-
-//EVENTO DEL USUARIO PARA CREAR LISTA DE ESPERA.
-let btnRefresh1 = document.getElementById("refresh1");
-btnRefresh1.addEventListener("click", actualizarEspera);
-
-//EVENTO DEL USUARIO PARA LIBERAR CONSULTORIO.
-let btnVaciarConsultorio1 = document.getElementById("liberar1");
-btnVaciarConsultorio1.addEventListener("click", vaciarBox);
-
-//DECLARO UNA FUNCION QUE CARGA DATOS AL DOM PARA INFORMAR EL STATUS DE LA APP.(FECHA, HORA, USER)
+//INSERTAR FECHA Y HORA
 function date() {
-  //INSERTAR FECHA
-  const hora = document.getElementById("date");
-  hora.innerText = new Date().toDateString();
-
-  //INSERTAR HORA
-  const fecha = document.getElementById("hour");
-  fecha.innerText = new Date().toLocaleTimeString();
+  $("#date").text(new Date().toDateString());
+  $("#hour").text(new Date().toLocaleTimeString());
 }
 
-//INTERVALO DE LA FUNCION STATUS PARA FUNCIONAMIENTO DEL RELOJ.
+//INTERVALO DE LA FUNCION DATE PARA FUNCIONAMIENTO DEL RELOJ.
 setInterval(date, 1000);
 
-//MOSTRAR USUARIO LOGUEADO
-function usuarioLogeado() {
-  //INSERTAR USUARIO
-  let user = document.getElementById("user");
-  let logeado = JSON.parse(localStorage.getItem("usuario"));
-  user.innerText = `Usuario: ${logeado}`;
-}
-
-usuarioLogeado();
-
-
+//MODIFICO EL DOM INFORMANDO LO REALIZADO.
 function mostrarDisplay(msg) {
-  //MODIFICO EL DOM INFORMANDO LO REALIZADO.
   $("#display").text(msg);
 }
