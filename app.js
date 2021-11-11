@@ -123,94 +123,56 @@ $("#ingresar").click(function (e) {
 
 //FUNCION LIBERAR CONSULTORIO
 $("#liberar1").click(function () {
+  console.log(listaBox1[0])
   $("#consultorioOcupado1").text("CONSULTORIO VACIO");
+  listaBox1.shift();
 });
 
 //CREA LA LISTA DE ESPERA EN BASE A LOS PACIENTES INGRESADOS
-// //EVENTO DEL USUARIO PARA CREAR LISTA DE ESPERA.
-// let btnRefresh1 = document.getElementById("refresh1");
-// btnRefresh1.addEventListener("click", actualizarEspera);
 
-let id = 1;
-
-let refrescar = $("#refresh1").click(() => {
+const refrescar = () => {
   $("#medico1").empty();
-  
+
   listaPacientes.forEach((paciente) => {
     $("#medico1").append(`
     <p>${paciente.nombre}</p>
     <p> ${paciente.apellido}</p>
-    <button id="ing${id}"  
+    <button id="ing${paciente.dni}"  
     class="btn-ing-con">INGRESAR</button>
-    <button id="sal${id}"
+    <button id="sal${paciente.dni}"
     class="btn-can-con">CANCELAR</button>    
     `);
-    console.log(listaPacientes)
-    $(`#ing${id}`).click(function (dni) {
-      const paciente = listaPacientes.find((paciente) => paciente.dni === dni);
-      
-      listaBox1.push(paciente);
-      
-      console.log("paciente: " + paciente);
-      console.log("Lista Box1" + listaBox1);
-      
-      $("#consultorioOcupado1").text(`${paciente.nombre} ${paciente.nombre}`);
-      
-      refrescar();
-      //actualizarEspera();
+
+    $(`#ing${paciente.dni}`).on("click", () => {
+      ingresar(paciente.dni);
     });
-    
-    $(`#sal${id}`).click(function (dni) {
-      const remover = listaPacientes.find((paciente) => paciente.dni === dni);
-      console.log(remover);
-      listaPacientes.splice(listaPacientes.indexOf(remover), 1);
-      
-      listaBox1.push(paciente);
-      
-      refrescar();
+
+    $(`#sal${paciente.dni}`).on("click", () => {
+      egresar(paciente.dni);
     });
-    id++;
   });
-});
-  // const actualizarEspera = () => {
-//   const div = document.getElementById("medico1");
-//   div.innerHTML = "";
+};
+// //EVENTO DEL USUARIO PARA CREAR LISTA DE ESPERA.
+let btnRefresh1 = document.getElementById("refresh1");
+btnRefresh1.addEventListener("click", refrescar);
 
-//   listaPacientes.forEach((paciente) => {
-//     const lista = document.createElement("div");
+const ingresar = (dni) => {
+  const paciente = listaPacientes.find((paciente) => paciente.dni === dni);
 
-//     lista.className = "pacienteEsperando";
-//     lista.innerHTML = `
-//     <p>${paciente.nombre}</p>
-//     <p> ${paciente.apellido}</p>
-//     <button onclick="ingresarConsultorio(${paciente.dni})"
-//     class="btn-ing-con">INGRESAR</button>
-//     <button onclick="cancelarConsultorio(${paciente.dni})"
-//     class="btn-can-con">CANCELAR</button>
-//     `;
+  listaBox1.push(paciente);
 
-//     div.appendChild(lista);
-//   });
-// };
+  $("#consultorioOcupado1").text(`${paciente.nombre} ${paciente.apellido}`);
+  listaPacientes.splice(listaPacientes.indexOf(paciente), 1);
+  refrescar();
+};
 
-//PROMOCION DE LISTA DE ESPERA A CONSULTORIO
+const egresar = (dni) => {
+  const remover = listaPacientes.find((paciente) => paciente.dni === dni);
+  console.log(remover);
+  listaPacientes.splice(listaPacientes.indexOf(remover), 1);
 
-// const ingresarConsultorio = (dni) => {
-//   const paciente = listaPacientes.find((paciente) => paciente.dni === dni);
-
-//   listaBox1.push(paciente);
-//   console.log("paciente: " + paciente);
-//   console.log("Lista Box1" + listaBox1);
-//   let pacienteNyA = `${paciente.nombre} ${paciente.nombre}`;
-
-//   let atendiendo1 = document.getElementById("consultorioOcupado1");
-//   atendiendo1.innerText = pacienteNyA;
-
-//   const remover = listaPacientes.find((paciente) => paciente.dni === dni);
-//   listaPacientes.splice(listaPacientes.indexOf(remover), 1);
-
-//   actualizarEspera();
-// };
+  refrescar();
+};
 
 //INSERTAR FECHA Y HORA
 function date() {
