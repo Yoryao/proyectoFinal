@@ -1,3 +1,8 @@
+$(()=>{
+console.log("DOM ready");
+});
+
+
 //DECLARO LA CLASE PARA CREAR LOS USUARIOS
 class Usuario {
   constructor(nombre, password) {
@@ -30,8 +35,10 @@ $("#btnRegistro").click(function (e) {
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
     mostrarDisplay("ya puede realizar el Login");
+    mensajePositivo();
   } else {
     mostrarDisplay("Ese nombre ya esta registrado.");
+    mensajeNegativo();
   }
 });
 
@@ -53,16 +60,21 @@ $("#logButton").click(function (e) {
   if (usuarioRegistrado && passwordLogin === `${usuarioRegistrado.password}`) {
     //passwords iguales: se habilita el ingreso.
     mostrarDisplay("ya puede ingresar al sistema.");
-
+    mensajePositivo();
     //GUARDO EL NOMBRE DEL USUARIO PARA LEVANTARLO DESDE EL INDEX.
     localStorage.setItem("usuario", JSON.stringify(nombreLogin));
 
     $("#botonIngreso").append(`<button type="button"
-                                id="ingreso1" value="Ingresar al sistema">
+                                id="ingreso1" value="Ingresar al sistema" style="display: none">
                                 <a href="index.html" target="_blank">INGRESO AL SISTEMA</a>
                                 </button>`);
+    $("#ingreso1").show().css({
+      "width" : "100px",
+      "height": "100px"
+    });
   } else {
     mostrarDisplay("Los datos de ingreso no coinciden.");
+    mensajeNegativo();
   }
 });
 
@@ -72,4 +84,18 @@ function mostrarDisplay(msg) {
 }
 
 //VERIFICACIONES
-console.log(usuarios);
+//    console.log(usuarios);
+
+function mensajeNegativo() {
+  $("header").slideDown(0);
+  $("#encabezado").removeClass("positivo").fadeIn(3000);
+  $("#encabezado").addClass("negativo").fadeOut(3000);
+  $("header").delay(6000).slideUp(2000);
+}
+
+function mensajePositivo() {
+  $("header").slideDown(0);
+  $("#encabezado").removeClass("negativo").fadeIn(3000);
+  $("#encabezado").addClass("positivo").fadeOut(3000);
+  $("header").delay(6000).slideUp(2000);
+}

@@ -1,4 +1,8 @@
 //PAGINA WEB PARA GESTIONAR LA ATENCIÓN DE UN CONSULTORIO MEDICO.
+$(()=>{
+  console.log("DOM ready");
+  });
+
 
 //MOSTRAR USUARIO LOGUEADO
 $(() => {
@@ -31,6 +35,8 @@ let listaPacientes = [
 ]; // INGRESOS AL CENTRO MEDICO
 let listaBox1 = []; // INGRESO AL CONSULTORIO.
 let listaCoberturas = []; //COBERTURAS PERMITIDAS.
+
+
 
 //------------------INICIO PACIENTE--------------------
 //DEFINIR LA CLASE PARA CREAR UN PACIENTE QUE SE ATENDERA EN CENTRO MEDICO
@@ -84,6 +90,26 @@ $("#ingresarDoc").click(function () {
   mostrarDisplay(
     `El Doctor ${doctor.apellido} se ha registrado para atender en el box ${doctor.box}.`
   );
+
+  switch (box) {
+    case "1":
+      $("#selectDoctor1").text(apellido)
+      break;
+  
+      case "2":
+      $("#selectDoctor2").text(apellido)
+      
+      break;
+
+      case "3":
+      $("#selectDoctor3").text(apellido)
+      
+      break;
+    default:
+      
+    break;
+  }
+
 
   $(`#doctor${box}`).text(`Dr. ${doctor.nombre} ${doctor.apellido}`);
   console.log(doctor);

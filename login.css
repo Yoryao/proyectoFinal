@@ -14,6 +14,19 @@ header {
     border-radius: 10px;
 }
 
+.positivo{
+    background-color: chartreuse;
+    color: black;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.negativo{
+    background-color: red;
+    color: black;
+    border: 2px solid black;
+    border-radius: 10px;
+}
 
 
 
