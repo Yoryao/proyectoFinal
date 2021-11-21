@@ -46,29 +46,38 @@ $("#btnRegistro").click(function (e) {
 $("#logButton").click(function (e) {
   e.preventDefault();
 
-  //EXTRAIGO LOS USUARIOS DEL STORAGE Y LO PARSEO.
-  let usuariosRegistrados = JSON.parse(localStorage.getItem("usuarios"));
-  //CAPTURO LOS DATOS INGRESADOS EN EL LOGIN
-  let nombreLogin = $("#nombreLogin").val();
-  let passwordLogin = $("#passwordLogin").val();
-  //RECORRE LOS OBJETOS-USUARIOS CON EL PARAMETRO NOMBRE.
-  let usuarioRegistrado = usuariosRegistrados.find(
-    (user) => user.nombre === nombreLogin
-  );
 
-  //VERIFICO EQUIVALENCIA ENTRE PASSWORD INGRESA Y PASSWORD REGISTRADO.
-  if (usuarioRegistrado && passwordLogin === `${usuarioRegistrado.password}`) {
+  //obtengo el array de usuarios registrados.
+  $.get("./users.json", (resp) => {
+    console.log(resp);
+
+
+    let idLogin = parseInt($("#nombreLogin").val());
+console.log(idLogin);
+
+    let passwordLogin = $("#passwordLogin").val();
+  console.log(passwordLogin)
+
+
+    let userRegistro = resp.find((value) => value.id === idLogin);
+
+    console.log(userRegistro)
+
+    //VERIFICO EQUIVALENCIA ENTRE PASSWORD INGRESA Y PASSWORD REGISTRADO.
+  if ( userRegistro && passwordLogin === `${userRegistro.password}`) {
     //passwords iguales: se habilita el ingreso.
     mostrarDisplay("ya puede ingresar al sistema.");
     mensajePositivo();
     //GUARDO EL NOMBRE DEL USUARIO PARA LEVANTARLO DESDE EL INDEX.
-    localStorage.setItem("usuario", JSON.stringify(nombreLogin));
+    localStorage.setItem("usuario", JSON.stringify(userRegistro.nombre));
 
     $("#botonIngreso").append(`<button type="button"
                                 id="ingreso1" value="Ingresar al sistema" style="display: none">
                                 <a href="index.html" target="_blank">INGRESO AL SISTEMA</a>
                                 </button>`);
-    $("#ingreso1").show().css({
+   
+   /////////////////////////////////
+                                $("#ingreso1").show().css({
       "width" : "100px",
       "height": "100px"
     });
@@ -76,6 +85,7 @@ $("#logButton").click(function (e) {
     mostrarDisplay("Los datos de ingreso no coinciden.");
     mensajeNegativo();
   }
+});
 });
 
 //FUNCIONES

@@ -1,0 +1,6 @@
+[
+    {"id" : 1 , "nombre" : "John" , "password" : "lennon"},
+    {"id" : 2 , "nombre" : "Elvis" , "password" : "presley"},
+    {"id" : 3 , "nombre" : "Robert" , "password" : "marley"},
+    {"id" : 4 , "nombre" : "Joey" , "password" : "ramone"}
+]
