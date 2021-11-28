@@ -22,13 +22,15 @@ function date() {
 };
 //==>INTERVALO DE LA FUNCION DATE PARA FUNCIONAMIENTO DEL RELOJ.
 setInterval(date, 1000);
+
 //==>MODIFICO EL DOM INFORMANDO LO REALIZADO.
 function mostrarDisplay(msg) {
-  $("#display").text(msg)
-  .slideDown(2000)
+  $("#display").fadeIn(1000)
+  .text(msg)
   .delay(4000)
-  .slideUp(4000);
+  .fadeOut(3000)
 
+  
 };
 //==>MOSTRAR USUARIO LOGUEADO
 $(() => {
@@ -39,25 +41,24 @@ $(() => {
 //------------------INICIO PACIENTE--------------------
 //DEFINIR LA CLASE PARA CREAR UN PACIENTE QUE SE ATENDERA EN CENTRO MEDICO
 class Paciente {
-  constructor(nombre, dni, apellido, doctor, cobertura) {
+  constructor(nombre, dni, apellido, doctor) {
     (this.nombre = nombre),
     (this.dni = dni),
       (this.apellido = apellido),
-      (this.doctor = doctor),
-      (this.cobertura = cobertura)
+      (this.doctor = doctor)
+     
   };
 };
 
 //------------------INICIO DE DOCTOR-----------------------------
 //DEFINIR LA CLASE PARA HABILITAR UN MEDICO AL CENTRO MEDICO
 class Doctor {
-  constructor(nombre, apellido, dni, box, cobertura) {
+  constructor(nombre, apellido, dni, box) {
     (this.nombre = nombre),
     (this.apellido = apellido),
     (this.dni = dni),
-    (this.box = box),
-    (this.cobertura = cobertura)
-  };
+    (this.box = box)
+   };
 };
 
 //EVENTO DEL USUARIO PARA CREAR EL PACIENTE.
@@ -68,10 +69,23 @@ $("#ingresar").click(function (e) {
   let dni = parseInt($("#dniPac").val());
   let apellido = $("#apellidoPac").val();
   let doctor = parseInt($("#doctorPac").val());
-  let cobertura = $("#coberturaPac").val();
+
+  
+  //VALIDO EL INGRESO DE DATOS.
+
+
+  if (nombre == "" || apellido == "" || dni == "" ) {
+    mostrarDisplay("No ingreso datos validos, por favor verifiquelos.")
+    
+      } 
+      //VALIDO QUE HAYA LLEGADO ALGUN DOCTOR.
+      else if ( isNaN(doctor)) {
+    mostrarDisplay("Aun no ha llegado ningún doctor. Aún no se puede registrar.")
+
+      } else {
 
   //INVOCO AL CONSTRUCTOR.
-  const paciente = new Paciente(nombre, dni, apellido, email, doctor, cobertura);
+  const paciente = new Paciente(nombre, dni, apellido, doctor);
 
   // //MODIFICO EL DOM INFORMANDO LO REALIZADO.
   mostrarDisplay(`El paciente ${paciente.nombre} se ha registrado para ser atendido en el consultorio N° ${paciente.doctor}.`
@@ -93,6 +107,7 @@ $("#ingresar").click(function (e) {
     default:
       break;
   };
+}
 });
 
 
@@ -104,10 +119,17 @@ $("#ingresarDoc").click(function () {
   let apellido = $("#apellidoDoc").val();
   let dni = $("#dniDoc").val();
   let box = $("#boxDoc").val();
-  let cobertura = $("#coberturaDoc").val();
+
+  //VALIDO EL INGRESO DE DATOS.
+
+  if (nombre == "" || apellido == "" || dni == "" ) {
+mostrarDisplay("No ingreso datos validos, por favor verifiquelos.")
+console.log("ERROR")
+
+  } else {
 
   //INVOCO AL CONSTRUCTOR.
-  const doctor = new Doctor(nombre, apellido, dni, box, cobertura);
+  const doctor = new Doctor(nombre, apellido, dni, box);
   // //MODIFICO EL DOM INFORMANDO LO REALIZADO.
   mostrarDisplay(
     `El Doctor ${doctor.apellido} se ha registrado para atender en el box ${doctor.box}.`
@@ -116,19 +138,25 @@ $("#ingresarDoc").click(function () {
   switch (box) {
     case "1":
       $("#selectDoctor1").text(apellido);
+      $("#selectDoctor1").val(1);
+
       break;
     case "2":
       $("#selectDoctor2").text(apellido);
+      $("#selectDoctor2").val(2);
+      
       break;
     case "3":
       $("#selectDoctor3").text(apellido);
+      $("#selectDoctor3").val(3);
+      
       break;
   };
   //AGREGO EL NOMBRE DEL DOCTOR AL BOX ELEGIDO.
   $(`#doctor${box}`).text(`Dr. ${doctor.nombre} ${doctor.apellido}`);
+};
+
 });
-
-
 //FUNCIONALIDAD BOX 1
 
 //CREA LA LISTA DE ESPERA EN BASE A LOS PACIENTES INGRESADOS
@@ -140,9 +168,9 @@ const refrescar = () => {
     <p>${paciente.nombre}</p>
     <p> ${paciente.apellido}</p>
     <button id="ing${paciente.dni}"  
-    class="btn-ing-con">INGRESAR</button>
+    class="btn btn-success">INGRESAR</button>
     <button id="sal${paciente.dni}"
-    class="btn-can-con">CANCELAR</button>    
+    class="btn btn-danger">CANCELAR</button>    
     `);
 
     $(`#ing${paciente.dni}`).on("click", () => {
@@ -190,9 +218,9 @@ const refrescar2 = () => {
     <p>${paciente.nombre}</p>
     <p> ${paciente.apellido}</p>
     <button id="ing2${paciente.dni}"  
-    class="btn-ing-con">INGRESAR</button>
-    <button id="sal2${paciente.dni}"
-    class="btn-can-con">CANCELAR</button>    
+    class="btn btn-success">INGRESAR</button>
+    <button class="btn btn-danger" id="sal2${paciente.dni}"
+    >CANCELAR</button>    
     `);
 
     $(`#ing2${paciente.dni}`).on("click", () => {
@@ -239,9 +267,9 @@ const refrescar3 = () => {
     <p>${paciente.nombre}</p>
     <p> ${paciente.apellido}</p>
     <button id="ing3${paciente.dni}"  
-    class="btn-ing-con">INGRESAR</button>
+    class="btn btn-success">INGRESAR</button>
     <button id="sal3${paciente.dni}"
-    class="btn-can-con">CANCELAR</button>    
+    class="btn btn-danger">CANCELAR</button>    
     `);
 
     $(`#ing3${paciente.dni}`).on("click", () => {
@@ -275,3 +303,20 @@ $("#liberar3").click(function () {
   $("#consultorioOcupado3").text("CONSULTORIO VACIO");
   listaBox3.shift();
 });
+
+
+//BOTONES PARA LIMPIAR FORMULARIOS
+
+$("#borrarDoc").click(()=>{
+  $("#nombreDoc").val("");
+  $("#apellidoDoc").val("");
+  $("#dniDoc").val("");
+  $("#boxDoc").val("");
+});
+
+
+$("#borrarPac").click(()=>{
+  $("#nombrePac").val("");
+  $("#apellidoPac").val("");
+  $("#dniPac").val("");
+ });

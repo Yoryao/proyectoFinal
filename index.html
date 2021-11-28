@@ -28,8 +28,8 @@
                         <p id="user" class="nav-link">USUARIO</p>
                         <p id="hour" class="nav-link">HORA</p>
                     </div>
-                    <div>
-                        <button><a href="login.html">VOLVER AL LOGIN</a></button>
+                    <div id="btn-div">
+                        <button class="btn-login"><a href="login.html">VOLVER AL LOGIN</a></button>
                     </div>
                 </div>
             </div>
@@ -46,129 +46,152 @@
         </section>
     </div>
 
-<div>
-    <h2 class="tituloSeccion" class="fs-3">Formularios de Ingresos</h2>
-</div>
+    <div>
+        <h2 class="tituloSeccion fs-2">Formularios de Ingresos.</h2>
+    </div>
 
 
     <!-- INICIO SECCION INGRESO DE DATOS. -->
-    <section id="formulariosIngreso">
-        <div id="formPacientes" class="mb-3">
-            <h3>Ingreso de Pacientes</h3>
-            <label>Nombre
-                <input type="text" name="nombre" id="nombrePac">
-            </label>
-            <label>Apellido
-                <input type="text" name="apellido" id="apellidoPac">
-            </label>
-            <label>Dni
-                <input type="text" name="dni" id="dniPac">
-            </label>
-            <label>Doctor
-                <select name="doctor" id="doctorPac">
-                    <option id="selectDoctor1" value="1">Value 1</option>
-                    <option id="selectDoctor2" value="2" selected>Value 2</option>
-                    <option id="selectDoctor3" value="3">Value 3</option>
-                </select>
-            </label>
-            <label>Cobertura
-                <input type="text" name="cobertura" id="coberturaPac">
-            </label>
-            <input type="submit" value="ingresar" id="ingresar" class="btn btn-success">
-            <input type="reset" value="Borrar" class="btn btn-danger">
+    <section id="formulariosIngreso" class="row">
+        <div class="col-1"></div>
+        <div id="formMedicos" class="col-4">
 
-
-
-        </div>
-        <div id="formMedicos">
             <h3>Ingreso de Medicos</h3>
-            <label>Nombre
-                <input type="text" name="nombreDoc" id="nombreDoc">
-            </label>
-            <label>Apellido
-                <input type="text" name="apellido" id="apellidoDoc">
-            </label>
-            <label>Dni
-                <input type="number" name="dni" id="dniDoc">
-            </label>
-            <label>Consultorio
-                <select name="doctorBox" id="boxDoc">
+
+            <div class="row">
+                <label class="col-4 my-2">Nombre
+                </label>
+                <input class="col-6 my-2" type="text" name="nombreDoc" id="nombreDoc">
+                <label class="col-4 my-2">Apellido
+                </label>
+                <input class="col-6 my-2" type="text" name="apellido" id="apellidoDoc">
+                <label class="col-4 my-2">Dni
+                </label>
+                <input class="col-6 my-2" type="number" name="dni" id="dniDoc">
+                <label class="col-4 my-2">Consultorio
+                </label>
+                <select class="col-6 my-2" name="doctorBox" id="boxDoc">
                     <option value="1">Box 1</option>
                     <option value="2">Box 2</option>
                     <option value="3">Box 3</option>
                 </select>
-            </label>
-            <label>Cobertura
-                <input type="text" name="cobertura" id="coberturaDoc">
-            </label>
-            <input type="submit" value="Ingresar" id="ingresarDoc" class="btn btn-success">
-            <input type="reset" value="Borrar" class="btn btn-danger">
 
+                <div class="row">
+                    <div class="col-1"></div>
+                    <input type="submit" value="Ingresar" id="ingresarDoc" class="col-4 my-4 btn btn-success">
+                    <div class="col-2"></div>
 
+                    <input type="reset" value="Borrar" id="borrarDoc" class="col-4 btn btn-danger my-4">
+                    <div class="col-1"></div>
 
+                </div>
+            </div>
         </div>
+
+        <div class="col-2"></div>
+
+
+
+        <div id="formPacientes" class="mb-3 col-4">
+            <h3>Ingreso de Pacientes</h3>
+
+            <div class="row">
+
+                <label class="col-4 my-2">Nombre
+                </label>
+                <input class="col-6 my-2" type="text" name="nombre" id="nombrePac">
+                <label class="col-4 my-2">Apellido
+                </label>
+                <input class="col-6 my-2" type="text" name="apellido" id="apellidoPac">
+                <label class="col-4 my-2">Dni
+                </label>
+                <input class="col-6 my-2" type="text" name="dni" id="dniPac">
+                <label class="col-4 my-2">Doctor
+                </label>
+                <select class="col-6 my-2" name="doctor" id="doctorPac">
+                    <option id="selectDoctor1" value="">-----</option>
+                    <option id="selectDoctor2" value="">-----</option>
+                    <option id="selectDoctor3" value="">-----</option>
+                </select>
+
+                <div class="row">
+                    <div class="col-1"></div>
+
+                    <input type="submit" value="ingresar" id="ingresar" class=" my-4 col-4 btn btn-success">
+                    <div class="col-2"></div>
+
+                    <input type="reset" value="Borrar" id="borrarPac" class="col-4 my-4 btn btn-danger">
+                    <div class="col-1"></div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
     </section>
     <!-- FIN SECCION INGRESO DE DATOS. -->
 
     <!-- INGRESO SECCION LISTA DE PACIENTES POR MEDICO -->
-    <h2 class="tituloSeccion">LISTA DE ESPERA POR MEDICO</h2>
+    <h2 class="tituloSeccion fs-2">Lista de espera por médico.</h2>
 
     <section id="contenedores">
-        <div class="listaEspera">
-            <h3 class="consultorioMedico" id="box1">Consultorio 1</h3>
-            <h4 class="nombreDoctor" id="doctor1">Medico 1</h4>
-
-            <div id="consultorio1">
-
+        <div class="row">
+          
+            <div class="listaEspera col-4">
+                <h3 class="consultorioMedico p-3  bg-warning text-dark" id="box1">Consultorio 1</h3>
+                <h4 class="nombreDoctor" id="doctor1">Medico 1</h4>
                 <p id="consultorioOcupado1">CONSULTORIO VACIO</p>
-                <button id="liberar1" class="btn btn-primary border border-success border-4">LIBERAR
-                    CONSULTORIO</button>
 
+                <div id="consultorio1" class="row">
+
+                    <button id="liberar1" class="col-6 btn btn-warning">LIBERAR CONSULTORIO</button>
+
+
+                    <button id="refresh1" class="col-6 btn btn-success">Actualizar lista de espera</button>
+                </div>
+
+                <div class="listaPacientesPorMedico1" id="medico1">
+                    </table>
+                </div>
             </div>
 
-            <button id="refresh1" class="btn btn-primary border border-success border-4">Actualizar lista de
-                espera</button>
-
-            <div class="listaPacientesPorMedico1" id="medico1">
-                </table>
-            </div>
-        </div>
-
-        <div class="listaEspera">
-            <h3 class="consultorioMedico" id="box2">Consultorio 2</h3>
-            <h4 class="nombreDoctor" id="doctor2">Medico 2</h4>
-
-            <div id="consultorio2">
-
+            <div class="listaEspera col-4">
+                <h3 class="consultorioMedico p-3 mb-2 bg-warning text-dark" id="box2">Consultorio 2</h3>
+                <h4 class="nombreDoctor" id="doctor2">Medico 2</h4>
                 <p id="consultorioOcupado2">CONSULTORIO VACIO</p>
-                <button id="liberar2" class="btn btn-primary">LIBERAR CONSULTORIO</button>
 
+                <div id="consultorio2" class="row">
+
+                    <button id="liberar2" class="col-6 btn btn-warning">LIBERAR CONSULTORIO</button>
+
+
+                    <button id="refresh2" class="col-6 btn btn-success">Actualizar lista de espera</button>
+                </div>
+
+                <div class="listaPacientesPorMedico" id="medico2">
+                    </table>
+                </div>
             </div>
 
-            <button id="refresh2" class="btn btn-primary">Actualizar lista de espera</button>
-
-            <div class="listaPacientesPorMedico" id="medico2">
-                </table>
-            </div>
-        </div>
-
-        <div class="listaEspera">
-            <h3 class="consultorioMedico" id="box3">Consultorio 3</h3>
-            <h4 class="nombreDoctor" id="doctor3">Medico 3</h4>
-
-            <div id="consultorio3">
+            <div class="listaEspera col-4">
+                <h3 class="consultorioMedico p-3 mb-2 bg-warning text-dark" id="box3">Consultorio 3</h3>
+                <h4 class="nombreDoctor" id="doctor3">Medico 3</h4>
 
                 <p id="consultorioOcupado3">CONSULTORIO VACIO</p>
-                <button id="liberar3" class="btn btn-primary">LIBERAR CONSULTORIO</button>
 
-            </div>
+                <div id="consultorio3" class="row">
 
-            <button id="refresh3" class="btn btn-primary">Actualizar lista de espera</button>
+                    <button id="liberar3" class="col-6 btn btn-warning">LIBERAR CONSULTORIO</button>
 
-            <div class="listaPacientesPorMedico" id="medico3">
-                </table>
+
+                    <button id="refresh3" class=" col-6 btn btn-success">Actualizar lista de espera</button>
+                </div>
+                <div class="listaPacientesPorMedico" id="medico3">
+                    </table>
+                </div>
             </div>
         </div>
+
     </section>
 
     <script src="./app.js"></script>
