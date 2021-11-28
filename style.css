@@ -5,18 +5,8 @@ body {
     align-items: center;
     margin: 0px auto;
     background-color: blanchedalmond;
-    border: 2px red solid;
+
     
-}
-
-header {
-    background-color: cadetblue;
-    display: flex;
-    flex-direction: row;
-    height: 40px;
-    width: 100%;
-    margin: 0;
-
 }
 
 li, a {
@@ -26,27 +16,38 @@ li, a {
 
 }
 
-#display {
-    height: 3rem;
+#titulo {
     text-align: center;
-    background-color: yellow;
-    padding-top: 1.5rem;
-
+    font-size: 3rem;
+    font-family:'Times New Roman', Times, serif
 }
 
-#titulo, #tituloSeccion {
+#titulo {
+    margin: 25px auto 55px auto;
+}
+
+#display {
+    display: flex;
+    min-height: 100px;
+    margin: 25px auto 25px auto;
     text-align: center;
-    border: 2px brown solid;
-    font-size: 2em;
-    font-family:'Times New Roman', Times, serif
+    background-color: yellow;
+    margin-top: auto;
+    align-items: center;
+   justify-content: center;
+   border: black 3px solid;
+   border-radius: 10px;
 }
 
 .tituloSeccion {
     text-align: center;
-    border: 2px yellowgreen solid;
-    font-size: 1.5em;
-    font-family:'Times New Roman', Times, serif
-}
+    font-size: 2rem;
+    font-family:'Times New Roman', Times, serif;
+     border: 2px brown solid;
+     margin: 25px auto 30px auto;
+   border-radius: 10px;
+
+ }
 
 #formulariosIngreso {
     width: 90%;

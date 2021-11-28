@@ -17,8 +17,8 @@ let listaBox3 = [];
 
 //FUNCIONES DEL HEADER. ==> //INSERTAR FECHA Y HORA
 function date() {
-  $("#date").text(new Date().toDateString());
-  $("#hour").text(new Date().toLocaleTimeString());
+  $("#date").text(`Fecha: ${new Date().toLocaleDateString()}`);
+  $("#hour").text(`Hora: ${new Date().toLocaleTimeString()}`);
 };
 //==>INTERVALO DE LA FUNCION DATE PARA FUNCIONAMIENTO DEL RELOJ.
 setInterval(date, 1000);
@@ -39,11 +39,10 @@ $(() => {
 //------------------INICIO PACIENTE--------------------
 //DEFINIR LA CLASE PARA CREAR UN PACIENTE QUE SE ATENDERA EN CENTRO MEDICO
 class Paciente {
-  constructor(nombre, dni, apellido, email, doctor, cobertura) {
+  constructor(nombre, dni, apellido, doctor, cobertura) {
     (this.nombre = nombre),
     (this.dni = dni),
       (this.apellido = apellido),
-      (this.email = email),
       (this.doctor = doctor),
       (this.cobertura = cobertura)
   };
@@ -68,7 +67,6 @@ $("#ingresar").click(function (e) {
   let nombre = $("#nombrePac").val();
   let dni = parseInt($("#dniPac").val());
   let apellido = $("#apellidoPac").val();
-  let email = $("#emailPac").val();
   let doctor = parseInt($("#doctorPac").val());
   let cobertura = $("#coberturaPac").val();
 
