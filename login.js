@@ -17,30 +17,33 @@ let usuarios = [];
 //IMPEDIR CREACION DUPLICADA DE NOMBRE DE USUARIO
 
 //FUNCION REGISTRO DE USUARIOS
-$("#btnRegistro").click(function (e) {
-  e.preventDefault();
 
-  // CAPTURO DATOS DEL USUARIO.
-  const nombreRegistro = $("#nombreRegistro").val();
-  const passwordRegistro = $("#passwordRegistro").val();
+//COMENTADO YA QUE SE CONSULTA LOS REGISTRADOS MEDIANTE AJAX EN "USERS.JSON"
 
-  let nombreExistente = usuarios.find((user) => user.nombre === nombreRegistro);
+// $("#btnRegistro").click(function (e) {
+//   e.preventDefault();
 
-  if (!nombreExistente) {
-    //CREO EL OBJETO USUARIO Y LO ENVIO AL STORAGE CONVERTIDO EN JSON
-    const usuario = new Usuario(nombreRegistro, passwordRegistro);
-    usuarios.push(usuario);
+//   // CAPTURO DATOS DEL USUARIO.
+//   const nombreRegistro = $("#nombreRegistro").val();
+//   const passwordRegistro = $("#passwordRegistro").val();
 
-    //CON CADA CREACION DE USUARIO ENVIO LOS DATOS AL STORAGE.
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+//   let nombreExistente = usuarios.find((user) => user.nombre === nombreRegistro);
 
-    mostrarDisplay("ya puede realizar el Login");
-    mensajePositivo();
-  } else {
-    mostrarDisplay("Ese nombre ya esta registrado.");
-    mensajeNegativo();
-  }
-});
+//   if (!nombreExistente) {
+//     //CREO EL OBJETO USUARIO Y LO ENVIO AL STORAGE CONVERTIDO EN JSON
+//     const usuario = new Usuario(nombreRegistro, passwordRegistro);
+//     usuarios.push(usuario);
+
+//     //CON CADA CREACION DE USUARIO ENVIO LOS DATOS AL STORAGE.
+//     localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+//     mostrarDisplay("ya puede realizar el Login");
+//     mensajePositivo();
+//   } else {
+//     mostrarDisplay("Ese nombre ya esta registrado.");
+//     mensajeNegativo();
+//   }
+// });
 
 //FUNCION LOGIN DE USUARIO
 $("#logButton").click(function (e) {
